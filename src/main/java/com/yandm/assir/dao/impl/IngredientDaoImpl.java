@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import com.yandm.assir.dao.ConnectionFactory;
 import com.yandm.assir.dao.DbUtil;
-import com.yandm.assir.dao.IngredientsDao;
+import com.yandm.assir.dao.IngredientDao;
 import com.yandm.assir.model.Ingredient;
 
-public class IngredientDaoImpl implements IngredientsDao {
+public class IngredientDaoImpl implements IngredientDao {
    private Statement statement;
    private Connection connection;
 
@@ -27,16 +27,18 @@ public class IngredientDaoImpl implements IngredientsDao {
    @Override
    public void editIngredient(Ingredient ingredient) {
       String query = "UPDATE ingredients\n" +
-            "SET name = \" " + ingredient.getName() + "\"," +
-            " calories = " + ingredient.getCalories() + "," +
+            "SET name = \"" + ingredient.getName() + "\"," +
+            " calories =" + ingredient.getCalories() + "," +
             " season = \"" + ingredient.getSeason() + "\"\n" +
-            "WHERE id = " + ingredient.getId() + ";";
+            "WHERE id =" + ingredient.getId() + ";";
       executeUpdate(query);
    }
 
    @Override
    public void removeIngredient(int ingredientId) {
+      String query = "DELETE FROM ingredients WHERE id=" + ingredientId;
 
+      executeUpdate(query);
    }
 
    @Override

@@ -2,7 +2,7 @@ package com.yandm.assir.dao;
 
 import com.yandm.assir.model.Ingredient;
 
-public interface IngredientsDao {
+public interface IngredientDao {
 
    void addIngredient(Ingredient ingredient);
 

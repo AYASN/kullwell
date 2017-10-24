@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import com.yandm.assir.dao.IngredientsDao;
+import com.yandm.assir.dao.IngredientDao;
 import com.yandm.assir.model.Ingredient;
 
 public class IngredientDaoImplTest {
@@ -15,7 +15,7 @@ public class IngredientDaoImplTest {
    public void setUp() {
 //      String urlDbFile = getClass().getResource("/kullWellTest.db").getPath();
 //      Connection connection = ConnectionFactory.getConnection("jdbc:sqlite:" + urlDbFile);
-      ingredient = dummyIngredient();
+      ingredient = dummyIngredient(6, "Tomato");
    }
 
    @After
@@ -26,20 +26,49 @@ public class IngredientDaoImplTest {
    @Test
    public void should_insert_an_ingredient() {
 
-      IngredientsDao ingredientsDao = new IngredientDaoImpl();
-      ingredientsDao.addIngredient(ingredient);
+      IngredientDao ingredientDao = new IngredientDaoImpl();
+      ingredientDao.addIngredient(ingredient);
 
-      Ingredient result = ingredientsDao.getIngredientById(1);
+      Ingredient result = ingredientDao.getIngredientById(6);
 
       assertThat(result.getId())
-            .isEqualTo(1);
+            .isEqualTo(6);
       assertThat(result.getName()).isEqualToIgnoringCase("tomato");
    }
 
-   public Ingredient dummyIngredient() {
+   @Test
+   public void should_update_an_ingredient(){
+
+      IngredientDao ingredientDao = new IngredientDaoImpl();
+      ingredient = dummyIngredient(7, "Potatoe");
+      ingredientDao.editIngredient(ingredient);
+
+      Ingredient updateResult = ingredientDao.getIngredientById(7);
+
+      assertThat(updateResult.getId())
+              .isEqualTo(7);
+      assertThat(updateResult.getName()).isEqualTo("Potatoe");
+   }
+
+   @Test
+   public void should_delete_an_ingredient() {
+
+      IngredientDao ingredientDao = new IngredientDaoImpl();
+      Ingredient beforeDeleteResult = ingredientDao.getIngredientById(2);
+
+      ingredientDao.removeIngredient(2);
+
+      Ingredient deleteResult = ingredientDao.getIngredientById(2);
+
+      assertThat(deleteResult.getId())
+              .isEqualTo(null);
+      assertThat(deleteResult.getName()).isEqualTo(null);
+   }
+
+   public Ingredient dummyIngredient(long id, String name) {
       ingredient = new Ingredient();
-      ingredient.setId(1L);
-      ingredient.setName("Tomato");
+      ingredient.setId(id);
+      ingredient.setName(name);
       return ingredient;
    }
 }
