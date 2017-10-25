@@ -6,7 +6,7 @@
 
    <servlet>
       <servlet-name>helloWorld</servlet-name>
-      <servlet-class>com.yandm.assir.HelloServlet</servlet-class>
+      <servlet-class>com.yandm.assir.controller.RecipeController</servlet-class>
    </servlet>
    <servlet-mapping>
       <servlet-name>helloWorld</servlet-name>
