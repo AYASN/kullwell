@@ -25,3 +25,6 @@ buildNumber.properties
 
 # IntelliJ
 /out/
+
+# Exclude sqlite Db
+*.db
