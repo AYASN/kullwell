@@ -16,5 +16,12 @@
          </td>
       </tr>
    </c:forEach>
+
+   <form action="/welcome" method="post">
+      <input type="text" name="name" value="" />
+      <input type="text" name="description" value="" />
+      <input type="submit" name="addRecipe" value="Add Recipe"/>
+   </form>
+
 </body>
 </html>
