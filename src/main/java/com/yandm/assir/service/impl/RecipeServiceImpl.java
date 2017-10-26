@@ -13,4 +13,9 @@ public class RecipeServiceImpl implements RecipeService {
    public Set<Recipe> getRecipes() {
       return recipeDao.getRecipes();
    }
+
+   @Override
+   public void createRecipe(Recipe recipe) {
+      recipeDao.addRecipe(recipe);
+   }
 }

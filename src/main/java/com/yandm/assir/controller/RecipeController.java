@@ -22,4 +22,23 @@ public class RecipeController extends HttpServlet {
       req.getRequestDispatcher("/index.jsp").forward(req, resp);
    }
 
+   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+      Recipe recipe = new Recipe();
+      String name = req.getParameter("name");
+      String description = req.getParameter("description");
+      String cuisine_type = req.getParameter("cuisine_type");
+
+      recipe = newRecipe(name, description, cuisine_type);
+      recipeService.createRecipe(recipe);
+   }
+
+   private Recipe newRecipe(String name, String description, String cuisine_type) {
+      Recipe recipe = new Recipe();
+      recipe.setName(name);
+      recipe.setDescription(description);
+      recipe.setCuisine_type(cuisine_type);
+      return recipe;
+   }
+
 }
