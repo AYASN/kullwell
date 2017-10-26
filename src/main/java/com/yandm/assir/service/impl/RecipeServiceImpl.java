@@ -13,4 +13,18 @@ public class RecipeServiceImpl implements RecipeService {
    public Set<Recipe> getRecipes() {
       return recipeDao.getRecipes();
    }
+
+   @Override
+   public void createRecipe(Recipe recipe) {
+      recipeDao.addRecipe(recipe);
+   }
+
+   @Override
+   public void editRecipe(Recipe recipe) {
+      recipeDao.editRecipe(recipe); }
+
+   @Override
+   public void removeRecipe(Long id) {
+      recipeDao.removeRecipe(id);
+   }
 }

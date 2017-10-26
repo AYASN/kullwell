@@ -6,15 +6,37 @@
 </head>
 <body>
    <h1>Al Salamo Alykom from the jsp</h1>
-   <h2>Run the <a href="/welcome">Servlet</a></h2>
+   <h2><a href="/recipe/read">Show Recipes</a></h2>
    <h1>${recipes}</h1>
 
-   <c:forEach items="${recipes}" var="recipe">
+   <table>
       <tr>
-         <td>${recipe.name}</td>
-
-         </td>
+         <th>#</th>
+         <th>Name</th>
+         <th>Description</th>
+         <th>Cuisine type</th>
       </tr>
-   </c:forEach>
+
+      <c:forEach items="${recipes}" var="recipe">
+         <tr>
+            <td>${recipe.id}</td>
+            <td>${recipe.name}</td>
+            <td>${recipe.description}</td>
+            <td>${recipe.cuisine_type}</td>
+            <td>
+               <a href="/edit.jsp?id=${recipe.id}&name=${recipe.name}
+               &description=${recipe.description}&cuisine_type=${recipe.cuisine_type}">Edit</a>
+            </td>
+            <td>
+               <a href="/recipe/remove?id=${recipe.id}">Remove</a>
+            </td>
+         </tr>
+      </c:forEach>
+   </table>
+
+   <form action="/add.jsp" method="post">
+      <input type="submit" name="addRecipe" value="Add Recipe"/>
+   </form>
+
 </body>
 </html>

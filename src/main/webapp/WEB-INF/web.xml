@@ -5,13 +5,14 @@
          version="3.1">
 
    <servlet>
-      <servlet-name>helloWorld</servlet-name>
+      <servlet-name>Recipe Controller</servlet-name>
       <servlet-class>com.yandm.assir.controller.RecipeController</servlet-class>
    </servlet>
    <servlet-mapping>
-      <servlet-name>helloWorld</servlet-name>
-      <url-pattern>/welcome</url-pattern>
+      <servlet-name>Recipe Controller</servlet-name>
+      <url-pattern>/recipe/*</url-pattern>
    </servlet-mapping>
+
    <welcome-file-list>
       <welcome-file>index.jsp</welcome-file>
    </welcome-file-list>
