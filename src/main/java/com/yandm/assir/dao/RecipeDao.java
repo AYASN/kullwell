@@ -10,4 +10,8 @@ public interface RecipeDao {
     Recipe getRecipeByName(String recipeName);
 
    Set<Recipe> getRecipes();
+
+    void editRecipe(Recipe recipe);
+
+    void removeRecipe(Long id);
 }

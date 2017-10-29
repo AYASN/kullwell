@@ -29,7 +29,7 @@ public class RecipeDaoImpl implements RecipeDao {
       String query = "SELECT * FROM recipes";
       HashSet<Recipe> recipes = new HashSet<>();
       connection = ConnectionFactory.getConnection();
-      Recipe recipe = null;
+
       try {
          Statement statement = connection.createStatement();
          ResultSet resultSet = statement.executeQuery(query);
@@ -46,6 +46,22 @@ public class RecipeDaoImpl implements RecipeDao {
       }
 
       return recipes;
+   }
+
+   @Override
+   public void editRecipe(Recipe recipe) {
+      String query = "UPDATE recipes\n" +
+              "SET name = \"" + recipe.getName() + "\"," +
+              "description = \"" + recipe.getDescription() + "\"," +
+              "cuisine_type = \"" + recipe.getCuisine_type() + "\"\n" +
+              "WHERE id = " + recipe.getId() + ";";
+      executeUpdate(query);
+   }
+
+   @Override
+   public void removeRecipe(Long id) {
+      String query = "DELETE FROM recipes WHERE id= " + id + ";";
+      executeUpdate(query);
    }
 
    @Override
