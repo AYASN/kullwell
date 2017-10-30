@@ -2,7 +2,9 @@ package com.yandm.assir.dao.impl;
 
 import com.yandm.assir.dao.ConnectionFactory;
 import com.yandm.assir.dao.DbUtil;
-import com.yandm.assir.dao.RecipeIngrdDao;
+import com.yandm.assir.dao.RecipeIngredientDao;
+import com.yandm.assir.model.Ingredient;
+import com.yandm.assir.model.Recipe;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,7 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeIngrdDaoImpl implements RecipeIngrdDao{
+public class RecipeIngredientDaoImpl implements RecipeIngredientDao {
     private Connection connection;
     private Statement statement;
 
@@ -46,6 +48,18 @@ public class RecipeIngrdDaoImpl implements RecipeIngrdDao{
         }
 
         return ingredientIds;
+    }
+
+    @Override
+    public void insertIngredientsOfRecipeIds(Recipe recipe, Long recipeID) {
+
+        List<Ingredient> ingredients = recipe.getIngredients();
+        int numberOfIngredients = ingredients.size();
+
+        for (int i=0; i < numberOfIngredients; i++) {
+            String query = "INSERT INTO recipes_ingredients (id_recipe, id_ingredients, quantity) VALUES\n" +
+                    "  (" + recipeID + ", " + ingredients.get(i) + ", \"\");";
+        }
     }
 
     private void executeUpdate(String query) {

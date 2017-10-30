@@ -1,6 +1,6 @@
 package com.yandm.assir.dao.impl;
 
-import com.yandm.assir.dao.RecipeIngrdDao;
+import com.yandm.assir.dao.RecipeIngredientDao;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -9,19 +9,19 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RecipeIngrdDaoImplTest {
+public class RecipeIngredientdDaoImplTest {
 
     @Test
     public void should_insert_ids() {
-        RecipeIngrdDao recipeIngrdDao = new RecipeIngrdDaoImpl();
+        RecipeIngredientDao recipeIngredientDao = new RecipeIngredientDaoImpl();
         List<Long> actualIngrdIds = new ArrayList<>(),
                 expectedIngrdIds = new ArrayList<>(Arrays.asList(1L, 2L, 3L));
 
-        recipeIngrdDao.addIds(1L,1L);
-        recipeIngrdDao.addIds(1L,2L);
-        recipeIngrdDao.addIds(1L,3L);
+        recipeIngredientDao.addIds(1L,1L);
+        recipeIngredientDao.addIds(1L,2L);
+        recipeIngredientDao.addIds(1L,3L);
 
-        actualIngrdIds = recipeIngrdDao.getIngredientsOfRecipe(1L);
+        actualIngrdIds = recipeIngredientDao.getIngredientsOfRecipe(1L);
 
         assertThat(actualIngrdIds).isEqualTo(expectedIngrdIds);
     }

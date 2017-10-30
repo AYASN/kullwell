@@ -16,12 +16,25 @@ public class RecipeDaoImpl implements RecipeDao {
    private Statement statement;
 
    @Override
-   public void addRecipe(Recipe recipe) {
+   public Long addRecipe(Recipe recipe) {
       String query = "INSERT INTO recipes (name, description, cuisine_type)\n" +
             "values (\"" + recipe.getName() + "\", "
             + "\"" + recipe.getDescription() + "\","
             + "\"" + recipe.getCuisine_type() + "\");";
       executeUpdate(query);
+
+      String queryForID = "SELECT LAST_INSERT_ROWID()";
+      Long recipeID = null;
+      connection = ConnectionFactory.getConnection();
+
+      try {
+          Statement statement = connection.createStatement();
+          ResultSet resultSet = statement.executeQuery(queryForID);
+          recipeID = resultSet.getLong("id");
+      } catch (SQLException e) {
+          e.printStackTrace();
+      }
+      return recipeID;
    }
 
    @Override

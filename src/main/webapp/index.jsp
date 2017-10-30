@@ -34,7 +34,7 @@
       </c:forEach>
    </table>
 
-   <form action="/add.jsp" method="post">
+   <form action="/urlofservlet" method="post">
       <input type="submit" name="addRecipe" value="Add Recipe"/>
    </form>
 
