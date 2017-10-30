@@ -13,6 +13,15 @@
       <url-pattern>/recipe/*</url-pattern>
    </servlet-mapping>
 
+   <servlet>
+      <servlet-name>Ingredient Controller</servlet-name>
+      <servlet-class>com.yandm.assir.controller.IngredientController</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>Ingredient Controller</servlet-name>
+      <url-pattern>/getIngredients/*</url-pattern>
+   </servlet-mapping>
+
    <welcome-file-list>
       <welcome-file>index.jsp</welcome-file>
    </welcome-file-list>

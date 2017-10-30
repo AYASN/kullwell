@@ -1,9 +1,7 @@
 package com.yandm.assir.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,8 +31,8 @@ public class RecipeController extends HttpServlet {
    @Override
    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-      String actionKey = req.getPathInfo().substring(1);
-      Action action = actions.get(actionKey);
+      String operation = req.getPathInfo().substring(1);
+      Action action = actions.get(operation);
       action.execute(req, resp);
 
       Set<Recipe> recipes = recipeService.getRecipes();

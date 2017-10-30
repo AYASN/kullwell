@@ -7,6 +7,8 @@ import com.yandm.assir.service.impl.RecipeServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddAction implements Action {
 
@@ -19,15 +21,25 @@ public class AddAction implements Action {
         String description = req.getParameter("description");
         String cuisine_type = req.getParameter("cuisine_type");
 
-        recipe = newRecipe(name, description, cuisine_type);
+        //get selected ingredients also to store with recipe object
+        String[] ingredientsIds = req.getParameterValues("ingredients");
+        List<Long> longIngredientsIds = new ArrayList<>();
+
+        Long ingredientsId;
+        for (int i=0; i < ingredientsIds.length; i++) {
+            ingredientsId = Long.parseLong(ingredientsIds[i].trim());
+            longIngredientsIds.add(ingredientsId);
+        }
+        recipe = newRecipe(name, description, cuisine_type, longIngredientsIds);
         recipeService.createRecipe(recipe);
     }
 
-    private Recipe newRecipe(String name, String description, String cuisine_type) {
+    private Recipe newRecipe(String name, String description, String cuisine_type, List<Long> longIngredientsIds) {
         Recipe recipe = new Recipe();
         recipe.setName(name);
         recipe.setDescription(description);
         recipe.setCuisine_type(cuisine_type);
+        recipe.setIngredients(longIngredientsIds);
         return recipe;
     }
 }

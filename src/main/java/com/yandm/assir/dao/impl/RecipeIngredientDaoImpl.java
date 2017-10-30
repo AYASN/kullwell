@@ -2,7 +2,7 @@ package com.yandm.assir.dao.impl;
 
 import com.yandm.assir.dao.ConnectionFactory;
 import com.yandm.assir.dao.DbUtil;
-import com.yandm.assir.dao.RecipeIngrdDao;
+import com.yandm.assir.dao.RecipeIngredientDao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeIngrdDaoImpl implements RecipeIngrdDao{
+public class RecipeIngredientDaoImpl implements RecipeIngredientDao {
     private Connection connection;
     private Statement statement;
 
@@ -28,7 +28,7 @@ public class RecipeIngrdDaoImpl implements RecipeIngrdDao{
 
         String query = "SELECT *\n" +
                 "FROM recipes_ingredients\n" +
-                "WHERE id_recipes = " + recipeId;
+                "WHERE id_recipe = " + recipeId;
 
         connection = ConnectionFactory.getConnection();
         List<Long> ingredientIds = new ArrayList<>();
@@ -48,6 +48,39 @@ public class RecipeIngrdDaoImpl implements RecipeIngrdDao{
         return ingredientIds;
     }
 
+    @Override
+    public void insertIngredientsOfRecipeIds(List<Long> ingredientsIds, Long recipeId) {
+
+        for (int i=0; i < ingredientsIds.size(); i++) {
+            String query = "INSERT INTO recipes_ingredients (id_recipe, id_ingredients, quantity) VALUES\n" +
+                    "  (" + recipeId + ", " + ingredientsIds.get(i) + ", \"\");";
+            executeUpdate(query);
+        }
+    }
+
+    @Override
+    public void editIngredientsOfRecipe(List<Long> ingredientsIds, Long recipeId) {
+        String query = "DELETE FROM recipes_ingredients WHERE id_recipe = " + recipeId + ";";
+        executeUpdateWoutClose(query);
+
+        for (int i=0; i < ingredientsIds.size(); i++) {
+            query = "INSERT INTO recipes_ingredients (id_recipe, id_ingredients, quantity) VALUES\n" +
+                "(" + recipeId + "," + ingredientsIds.get(i) + ",\"\");";
+            executeUpdate(query);
+        }
+    }
+
+    private void executeUpdateWoutClose(String query) {
+        connection = ConnectionFactory.getConnection();
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DbUtil.close(statement);
+        }
+    }
     private void executeUpdate(String query) {
         connection = ConnectionFactory.getConnection();
         try {
