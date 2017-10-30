@@ -13,8 +13,6 @@ public class IngredientDaoImplTest {
 
    @Before
    public void setUp() {
-//      String urlDbFile = getClass().getResource("/kullWellTest.db").getPath();
-//      Connection connection = ConnectionFactory.getConnection("jdbc:sqlite:" + urlDbFile);
       ingredient = dummyIngredient(6, "Tomato");
    }
 

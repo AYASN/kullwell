@@ -33,8 +33,8 @@ public class RecipeController extends HttpServlet {
    @Override
    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-      String actionKey = req.getPathInfo().substring(1);
-      Action action = actions.get(actionKey);
+      String operation = req.getPathInfo().substring(1);
+      Action action = actions.get(operation);
       action.execute(req, resp);
 
       Set<Recipe> recipes = recipeService.getRecipes();

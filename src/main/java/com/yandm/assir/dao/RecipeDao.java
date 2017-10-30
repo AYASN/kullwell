@@ -5,11 +5,11 @@ import com.yandm.assir.model.Recipe;
 
 public interface RecipeDao {
 
-    void addRecipe(Recipe recipe);
+    Long addRecipe(Recipe recipe);
 
     Recipe getRecipeByName(String recipeName);
 
-   Set<Recipe> getRecipes();
+    Set<Recipe> getRecipes();
 
     void editRecipe(Recipe recipe);
 
