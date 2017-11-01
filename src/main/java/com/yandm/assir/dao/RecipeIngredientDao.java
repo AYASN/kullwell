@@ -1,7 +1,5 @@
 package com.yandm.assir.dao;
 
-import com.yandm.assir.model.Recipe;
-
 import java.util.List;
 
 public interface RecipeIngredientDao {
@@ -10,5 +8,5 @@ public interface RecipeIngredientDao {
 
     List<Long> getIngredientsOfRecipe(Long recipeId);
 
-    void insertIngredientsOfRecipeIds(Recipe recipe, Long recipeID);
+    void insertIngredientsOfRecipeIds(List<Long> recipe, Long recipeID);
 }

@@ -68,34 +68,10 @@ public class IngredientDaoImpl implements IngredientDao {
       return ingredient;
    }
 
-   public Ingredient getIngredientById(int ingredientId) {
-      String query = "SELECT *\n" +
-              "FROM ingredients\n" +
-              "WHERE id = " + ingredientId;
-      connection = ConnectionFactory.getConnection();
-      Ingredient ingredient = null;
-      try {
-         Statement statement = connection.createStatement();
-         ResultSet resultSet = statement.executeQuery(query);
-
-         while (resultSet.next()) {
-            ingredient = newIngredient(resultSet.getLong("id"),
-                    resultSet.getString("name"),
-                    resultSet.getInt("calories"),
-                    resultSet.getString("season"));
-         }
-
-      } catch (SQLException e) {
-         e.printStackTrace();
-      }
-
-      return ingredient;
-   }
-
    @Override
    public HashSet<Ingredient> getIngredients() {
 
-      String query = "SELECT * FROM ingredients";
+      String query = "SELECT * FROM ingredients ORDER BY id";
       HashSet<Ingredient> ingredients = new HashSet<>();
       connection = ConnectionFactory.getConnection();
 
