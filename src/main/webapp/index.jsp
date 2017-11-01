@@ -15,6 +15,7 @@
          <th>Name</th>
          <th>Description</th>
          <th>Cuisine type</th>
+         <th>Ingredients</th>
       </tr>
 
       <c:forEach items="${recipes}" var="recipe">
@@ -24,6 +25,11 @@
             <td>${recipe.description}</td>
             <td>${recipe.cuisine_type}</td>
             <td>
+               <c:forEach items="${recipe.ingredients}" var="ingredient">
+                  ${ingredient},
+               </c:forEach>
+            </td>
+            <td>
                <a href="/edit.jsp?id=${recipe.id}&name=${recipe.name}
                &description=${recipe.description}&cuisine_type=${recipe.cuisine_type}">Edit</a>
             </td>
@@ -31,12 +37,14 @@
                <a href="/recipe/remove?id=${recipe.id}">Remove</a>
             </td>
          </tr>
+
       </c:forEach>
    </table>
 
-   <form action="/urlofservlet" method="post">
+   <form action="/getIngredientsToAdd" method="post">
       <input type="submit" name="addRecipe" value="Add Recipe"/>
    </form>
+   <br>
 
 </body>
 </html>

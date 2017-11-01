@@ -15,12 +15,13 @@ public class RecipeServiceImpl implements RecipeService {
    @Override
    public Set<Recipe> getRecipes() {
       return recipeDao.getRecipes();
+
    }
 
    @Override
    public void createRecipe(Recipe recipe) {
       Long recipeID =  recipeDao.addRecipe(recipe);
-      recipeIngredientDao.insertIngredientsOfRecipeIds(recipe, recipeID);
+      recipeIngredientDao.insertIngredientsOfRecipeIds(recipe.getIngredients(), recipeID);
    }
 
    @Override

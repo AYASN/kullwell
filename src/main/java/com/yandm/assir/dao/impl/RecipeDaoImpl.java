@@ -5,15 +5,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
+import java.util.List;
+
 import com.yandm.assir.dao.ConnectionFactory;
 import com.yandm.assir.dao.DbUtil;
 import com.yandm.assir.dao.RecipeDao;
+import com.yandm.assir.dao.RecipeIngredientDao;
 import com.yandm.assir.model.Recipe;
 
 public class RecipeDaoImpl implements RecipeDao {
 
    private Connection connection;
    private Statement statement;
+   private RecipeIngredientDao recipeIngredientDao = new RecipeIngredientDaoImpl();
 
    @Override
    public Long addRecipe(Recipe recipe) {
@@ -21,16 +25,16 @@ public class RecipeDaoImpl implements RecipeDao {
             "values (\"" + recipe.getName() + "\", "
             + "\"" + recipe.getDescription() + "\","
             + "\"" + recipe.getCuisine_type() + "\");";
-      executeUpdate(query);
+      executeUpdateWoutClose(query);
 
-      String queryForID = "SELECT LAST_INSERT_ROWID()";
+      String queryForID = "SELECT LAST_INSERT_ROWID();";
       Long recipeID = null;
-      connection = ConnectionFactory.getConnection();
-
       try {
           Statement statement = connection.createStatement();
           ResultSet resultSet = statement.executeQuery(queryForID);
-          recipeID = resultSet.getLong("id");
+         if (resultSet.next()) {
+            recipeID = resultSet.getLong(1);
+         }
       } catch (SQLException e) {
           e.printStackTrace();
       }
@@ -48,10 +52,14 @@ public class RecipeDaoImpl implements RecipeDao {
          ResultSet resultSet = statement.executeQuery(query);
 
          while (resultSet.next()) {
-            recipes.add(newRecipe(resultSet.getLong("id"),
-                  resultSet.getString("name"),
-                  resultSet.getString("description"),
-                  resultSet.getString("cuisine_type")));
+            Long id = resultSet.getLong("id");
+            String name = resultSet.getString("name");
+            String description = resultSet.getString("description");
+            String cuisine_type = resultSet.getString("cuisine_type");
+
+            List<Long> ingredientIds = recipeIngredientDao.getIngredientsOfRecipe(id);
+
+            recipes.add(newRecipe(id, name, description, cuisine_type, ingredientIds));
          }
 
       } catch (SQLException e) {
@@ -89,10 +97,11 @@ public class RecipeDaoImpl implements RecipeDao {
          ResultSet resultSet = statement.executeQuery(query);
 
          while (resultSet.next()) {
+            List<Long> ingredientIds = null;
             recipe = newRecipe(resultSet.getLong("id"),
                   resultSet.getString("name"),
                   resultSet.getString("description"),
-                  resultSet.getString("cuisine_type"));
+                  resultSet.getString("cuisine_type"), ingredientIds);
          }
 
       } catch (SQLException e) {
@@ -102,12 +111,13 @@ public class RecipeDaoImpl implements RecipeDao {
       return recipe;
    }
 
-   private Recipe newRecipe(long id, String name, String description, String cuisine_type) {
+   private Recipe newRecipe(long id, String name, String description, String cuisine_type, List<Long> ingredientIds) {
       Recipe recipe = new Recipe();
       recipe.setId(id);
       recipe.setName(name);
       recipe.setDescription(description);
       recipe.setCuisine_type(cuisine_type);
+      recipe.setIngredients(ingredientIds);
       return recipe;
    }
 
@@ -121,6 +131,18 @@ public class RecipeDaoImpl implements RecipeDao {
       } finally {
          DbUtil.close(statement);
          DbUtil.close(connection);
+      }
+   }
+
+   private void executeUpdateWoutClose(String query) {
+      connection = ConnectionFactory.getConnection();
+      try {
+         statement = connection.createStatement();
+         statement.executeUpdate(query);
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } finally {
+         DbUtil.close(statement);
       }
    }
 }
