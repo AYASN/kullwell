@@ -82,6 +82,10 @@ public class RecipeDaoImpl implements RecipeDao {
    @Override
    public void removeRecipe(Long id) {
       String query = "DELETE FROM recipes WHERE id= " + id + ";";
+      executeUpdateWoutClose(query);
+
+      //remove from rec_ingrd also
+      query = "DELETE FROM recipes_ingredients WHERE id_recipe = " + id + ";";
       executeUpdate(query);
    }
 
