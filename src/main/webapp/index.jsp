@@ -30,8 +30,9 @@
                </c:forEach>
             </td>
             <td>
-               <a href="/edit.jsp?id=${recipe.id}&name=${recipe.name}
-               &description=${recipe.description}&cuisine_type=${recipe.cuisine_type}">Edit</a>
+               <a href="/getIngredients/edit?id=${recipe.id}&name=${recipe.name}
+               &description=${recipe.description}&cuisine_type=${recipe.cuisine_type}
+               &ingredients=${recipe.ingredients}">Edit</a>
             </td>
             <td>
                <a href="/recipe/remove?id=${recipe.id}">Remove</a>
@@ -41,7 +42,7 @@
       </c:forEach>
    </table>
 
-   <form action="/getIngredientsToAdd" method="post">
+   <form action="/getIngredients/add" method="get">
       <input type="submit" name="addRecipe" value="Add Recipe"/>
    </form>
    <br>

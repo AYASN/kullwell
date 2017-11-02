@@ -18,13 +18,22 @@ public class IngredientController extends HttpServlet {
     private IngredientService ingredientService = new IngredientServiceImpl();
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
+
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         Set<Ingredient> ingredients = ingredientService.getIngredients();
         req.setAttribute("ingredients", ingredients);
 
-        req.getRequestDispatcher("/add.jsp").forward(req, resp);
-    }
+        String[] selectedIngredients = req.getParameterValues("ingredients");
+        req.setAttribute("selectedIngredients", selectedIngredients);
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String reqPathType = req.getPathInfo().substring(1);
+        if (reqPathType.equalsIgnoreCase("edit")) {
+            req.getRequestDispatcher("/edit.jsp").forward(req, resp);
+        } else if (reqPathType.equalsIgnoreCase("add")){
+            req.getRequestDispatcher("/add.jsp").forward(req, resp);
+        }
     }
 }
