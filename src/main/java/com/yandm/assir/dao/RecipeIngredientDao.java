@@ -9,4 +9,6 @@ public interface RecipeIngredientDao {
     List<Long> getIngredientsOfRecipe(Long recipeId);
 
     void insertIngredientsOfRecipeIds(List<Long> recipe, Long recipeID);
+
+    void editIngredientsOfRecipe(List<Long> ingredients, Long id);
 }

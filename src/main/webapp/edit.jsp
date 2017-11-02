@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -7,11 +8,20 @@
         <input type="text" name="name" value="${param.name}" />
         <input type="text" name="description" value="${param.description}" />
         <input type="text" name="cuisine_type" value="${param.cuisine_type}" />
+        <select name="ingredients" multiple>
+            <c:forEach items="${ingredients}" var="ingredient">
+                <option value="${ingredient.id}">${ingredient.name}</option>
+            </c:forEach>
+        </select>
+
         <input type="submit" name="editRecipe" value="Edit Recipe"/>
     </form>
 
+    <p>Selected ingredients for this recipe :</p><br>
+    <c:forEach items="${selectedIngredients}" var="ingredient">
+        ${ingredient},
+    </c:forEach>
 </head>
 <body>
-
 </body>
 </html>

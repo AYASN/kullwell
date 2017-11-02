@@ -58,6 +58,29 @@ public class RecipeIngredientDaoImpl implements RecipeIngredientDao {
         }
     }
 
+    @Override
+    public void editIngredientsOfRecipe(List<Long> ingredientsIds, Long recipeId) {
+        String query = "DELETE FROM recipes_ingredients WHERE id_recipe = " + recipeId + ";";
+        executeUpdateWoutClose(query);
+
+        for (int i=0; i < ingredientsIds.size(); i++) {
+            query = "INSERT INTO recipes_ingredients (id_recipe, id_ingredients, quantity) VALUES\n" +
+                "(" + recipeId + "," + ingredientsIds.get(i) + ",\"\");";
+            executeUpdate(query);
+        }
+    }
+
+    private void executeUpdateWoutClose(String query) {
+        connection = ConnectionFactory.getConnection();
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DbUtil.close(statement);
+        }
+    }
     private void executeUpdate(String query) {
         connection = ConnectionFactory.getConnection();
         try {

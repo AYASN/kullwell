@@ -26,7 +26,9 @@ public class RecipeServiceImpl implements RecipeService {
 
    @Override
    public void editRecipe(Recipe recipe) {
-      recipeDao.editRecipe(recipe); }
+      recipeDao.editRecipe(recipe);
+      recipeIngredientDao.editIngredientsOfRecipe(recipe.getIngredients(), recipe.getId());
+   }
 
    @Override
    public void removeRecipe(Long id) {
