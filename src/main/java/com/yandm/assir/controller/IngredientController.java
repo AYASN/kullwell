@@ -27,7 +27,13 @@ public class IngredientController extends HttpServlet {
         req.setAttribute("ingredients", ingredients);
 
         String[] selectedIngredients = req.getParameterValues("ingredients");
+        String strIngredientsIds = null;
+        if (selectedIngredients != null) {
+            strIngredientsIds = String.join(",", selectedIngredients);
+        }
+
         req.setAttribute("selectedIngredients", selectedIngredients);
+        req.setAttribute("strSelectedIngredients", strIngredientsIds);
 
         String reqPathType = req.getPathInfo().substring(1);
         if (reqPathType.equalsIgnoreCase("edit")) {

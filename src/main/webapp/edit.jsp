@@ -10,11 +10,19 @@
         <input type="text" name="name" value="${param.name}" />
         <input type="text" name="description" value="${param.description}" />
         <input type="text" name="cuisine_type" value="${param.cuisine_type}" />
+
+        <%--<c:set var="strSelectedIngredients" value="${strSelectedIngredients}"/>--%>
         <select name="ingredients" multiple>
-            <%String selectedIngredients = (String) request.getAttribute("selectedIngredients");
-              String ingredientId = (String) pageContext.getAttribute("ingredient"); %>
             <c:forEach items="${ingredients}" var="ingredient">
-                <option value="${ingredient.id}" <% selectedIngredients.contains(ingredientId) ? "selected=\"selected\"" : ""%> >${ingredient.name}</option>
+                <c:set var = "ingredientID" value = "${ingredient.id}"/>
+                <c:choose>
+                    <c:when test="${fn:contains(strSelectedIngredients, ingredientID)}">
+                        <option value="${ingredient.id}" selected>${ingredient.name}</option>
+                    </c:when>
+                    <c:otherwise>
+                        <option value="${ingredient.id}">${ingredient.name}</option>
+                    </c:otherwise>
+                </c:choose>
             </c:forEach>
         </select>
 
@@ -25,6 +33,11 @@
     <c:forEach items="${selectedIngredients}" var="ingredient">
         ${ingredient},
     </c:forEach>
+    <br>
+    <p>${strSelectedIngredients}</p>
+
+    <c:set var = "strSelectedIngredients" value = "${strSelectedIngredients}"/>
+
 </head>
 <body>
 </body>
