@@ -23,8 +23,8 @@ public class AddAction implements Action {
 
         //get selected ingredients also to store with recipe object
         String[] ingredientsIds = req.getParameterValues("ingredients");
-        List<Long> longIngredientsIds = new ArrayList<>();
 
+        List<Long> longIngredientsIds = new ArrayList<>();
         Long ingredientsId;
         for (int i=0; i < ingredientsIds.length; i++) {
             ingredientsId = Long.parseLong(ingredientsIds[i].trim());
