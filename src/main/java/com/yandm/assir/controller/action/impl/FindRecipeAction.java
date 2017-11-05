@@ -1,4 +1,4 @@
-package com.yandm.assir.controller.impl;
+package com.yandm.assir.controller.action.impl;
 
 import static java.lang.Long.valueOf;
 import static java.util.Arrays.asList;
@@ -9,12 +9,12 @@ import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.yandm.assir.controller.Action;
+import com.yandm.assir.controller.action.Action;
 import com.yandm.assir.model.Recipe;
 import com.yandm.assir.service.RecipeService;
 import com.yandm.assir.service.impl.RecipeServiceImpl;
 
-public class FindAction implements Action {
+public class FindRecipeAction implements Action {
    private RecipeService recipeService = new RecipeServiceImpl();
 
    @Override

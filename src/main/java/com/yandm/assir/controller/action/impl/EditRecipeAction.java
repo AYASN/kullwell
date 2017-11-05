@@ -1,16 +1,15 @@
-package com.yandm.assir.controller.impl;
+package com.yandm.assir.controller.action.impl;
 
-import com.yandm.assir.controller.Action;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import com.yandm.assir.controller.action.Action;
 import com.yandm.assir.model.Recipe;
 import com.yandm.assir.service.RecipeService;
 import com.yandm.assir.service.impl.RecipeServiceImpl;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
-
-public class EditAction implements Action{
+public class EditRecipeAction implements Action{
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) {
 
@@ -37,7 +36,7 @@ public class EditAction implements Action{
         recipe.setId(id);
         recipe.setName(name);
         recipe.setDescription(description);
-        recipe.setCuisine_type(cuisine_type);
+        recipe.setCuisineType(cuisine_type);
         recipe.setIngredients(longIngredientsIds);
         return recipe;
     }

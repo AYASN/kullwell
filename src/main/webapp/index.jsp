@@ -23,7 +23,7 @@
             <td>${recipe.id}</td>
             <td>${recipe.name}</td>
             <td>${recipe.description}</td>
-            <td>${recipe.cuisine_type}</td>
+            <td>${recipe.cuisineType}</td>
             <td>
                <c:forEach items="${recipe.ingredients}" var="ingredient">
                   ${ingredient},
@@ -31,7 +31,7 @@
             </td>
             <td>
                <a href="/getIngredients/edit?id=${recipe.id}&name=${recipe.name}
-               &description=${recipe.description}&cuisine_type=${recipe.cuisine_type}
+               &description=${recipe.description}&cuisineType=${recipe.cuisineType}
                &ingredients=${recipe.ingredients}">Edit</a>
             </td>
             <td>

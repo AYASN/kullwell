@@ -4,11 +4,10 @@ import java.util.List;
 
 public class Recipe {
 
-
     private Long id;
     private String name;
     private String description;
-    private String cuisine_type;
+    private String cuisineType;
     private List<Long> ingredients;
 
     public Long getId() {
@@ -35,12 +34,12 @@ public class Recipe {
         this.description = description;
     }
 
-    public String getCuisine_type() {
-        return cuisine_type;
+    public String getCuisineType() {
+        return cuisineType;
     }
 
-    public void setCuisine_type(String cuisine_type) {
-        this.cuisine_type = cuisine_type;
+    public void setCuisineType(String cuisineType) {
+        this.cuisineType = cuisineType;
     }
 
     public List<Long> getIngredients() {

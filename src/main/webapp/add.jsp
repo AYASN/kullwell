@@ -9,7 +9,7 @@
     <form action="/recipe/add" method="get">
         <input type="text" name="name" value="" />
         <input type="text" name="description" value="" />
-        <input type="text" name="cuisine_type" value="" />
+        <input type="text" name="cuisineType" value="" />
         <select name="ingredients" multiple>
             <c:forEach items="${ingredients}" var="ingredient">
                 <option value="${ingredient.id}">${ingredient.name}</option>

@@ -7,7 +7,7 @@
         <input type="hidden" name="id" value="${param.id}" />
         <input type="text" name="name" value="${param.name}" />
         <input type="text" name="description" value="${param.description}" />
-        <input type="text" name="cuisine_type" value="${param.cuisine_type}" />
+        <input type="text" name="cuisineType" value="${param.cuisineType}" />
         <select name="ingredients" multiple>
             <c:forEach items="${ingredients}" var="ingredient">
                 <option value="${ingredient.id}">${ingredient.name}</option>

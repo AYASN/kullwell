@@ -13,7 +13,6 @@ import com.yandm.assir.dao.ConnectionFactory;
 import com.yandm.assir.dao.DbUtil;
 import com.yandm.assir.dao.RecipeDao;
 import com.yandm.assir.dao.RecipeIngredientDao;
-import com.yandm.assir.model.Ingredient;
 import com.yandm.assir.model.Recipe;
 
 public class RecipeDaoImpl implements RecipeDao {
@@ -27,7 +26,7 @@ public class RecipeDaoImpl implements RecipeDao {
       String query = "INSERT INTO recipes (name, description, cuisine_type)\n" +
             "values (\"" + recipe.getName() + "\", "
             + "\"" + recipe.getDescription() + "\","
-            + "\"" + recipe.getCuisine_type() + "\");";
+            + "\"" + recipe.getCuisineType() + "\");";
       executeUpdateWoutClose(query);
 
       String queryForID = "SELECT LAST_INSERT_ROWID();";
@@ -120,7 +119,7 @@ public class RecipeDaoImpl implements RecipeDao {
       String query = "UPDATE recipes\n" +
               "SET name = \"" + recipe.getName() + "\"," +
               "description = \"" + recipe.getDescription() + "\"," +
-              "cuisine_type = \"" + recipe.getCuisine_type() + "\"\n" +
+              "cuisine_type = \"" + recipe.getCuisineType() + "\"\n" +
               "WHERE id = " + recipe.getId() + ";";
       executeUpdate(query);
    }
@@ -166,7 +165,7 @@ public class RecipeDaoImpl implements RecipeDao {
       recipe.setId(id);
       recipe.setName(name);
       recipe.setDescription(description);
-      recipe.setCuisine_type(cuisine_type);
+      recipe.setCuisineType(cuisine_type);
       recipe.setIngredients(ingredientIds);
       return recipe;
    }
