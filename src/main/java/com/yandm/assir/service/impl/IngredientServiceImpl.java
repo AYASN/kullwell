@@ -5,6 +5,7 @@ import com.yandm.assir.dao.impl.IngredientDaoImpl;
 import com.yandm.assir.model.Ingredient;
 import com.yandm.assir.service.IngredientService;
 
+import java.util.List;
 import java.util.Set;
 
 public class IngredientServiceImpl implements IngredientService {
@@ -14,5 +15,10 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public Set<Ingredient> getIngredients() {
         return ingredientDao.getIngredients();
+    }
+
+    @Override
+    public List<Ingredient> getIngredientsById(String strIngredientsIds) {
+        return ingredientDao.getIngredientsById(strIngredientsIds);
     }
 }

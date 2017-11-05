@@ -10,11 +10,15 @@
         <input type="text" name="name" value="" />
         <input type="text" name="description" value="" />
         <input type="text" name="cuisine_type" value="" />
-        <select name="ingredients" multiple>
+        <select name="slcIngredients" multiple>
             <c:forEach items="${ingredients}" var="ingredient">
                 <option value="${ingredient.id}">${ingredient.name}</option>
             </c:forEach>
         </select>
+        <%--<c:set var="ingredients" value="${slcIngredients}"/>--%>
+        <%--<%--%>
+            <%--System.out.println(pageContext.getAttribute("ingredients"));--%>
+        <%--%>--%>
         <input type="submit" name="addRecipe" value="Add Recipe"/>
     </form>
 

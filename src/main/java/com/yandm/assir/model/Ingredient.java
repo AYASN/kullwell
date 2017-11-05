@@ -3,6 +3,7 @@ package com.yandm.assir.model;
 public class Ingredient {
 
    private Long id;
+
    private String name;
 
    private int calories;
@@ -12,7 +13,6 @@ public class Ingredient {
    public Long getId() {
       return id;
    }
-
 
    public void setId(Long id) {
       this.id = id;

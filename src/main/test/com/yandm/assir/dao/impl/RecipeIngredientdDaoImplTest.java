@@ -1,6 +1,7 @@
 package com.yandm.assir.dao.impl;
 
 import com.yandm.assir.dao.RecipeIngredientDao;
+import com.yandm.assir.model.Ingredient;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -14,8 +15,8 @@ public class RecipeIngredientdDaoImplTest {
     @Test
     public void should_insert_ids() {
         RecipeIngredientDao recipeIngredientDao = new RecipeIngredientDaoImpl();
-        List<Long> actualIngrdIds = new ArrayList<>(),
-                expectedIngrdIds = new ArrayList<>(Arrays.asList(1L, 2L, 3L));
+        List<Ingredient> actualIngrdIds = new ArrayList<>();
+        List<Long> expectedIngrdIds = new ArrayList<>(Arrays.asList(1L, 2L, 3L));
 
         recipeIngredientDao.addIds(1L,1L);
         recipeIngredientDao.addIds(1L,2L);
