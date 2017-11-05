@@ -9,7 +9,7 @@ public class Recipe {
     private String name;
     private String description;
     private String cuisine_type;
-    private List<Long> ingredients;
+    private List<Ingredient> ingredients;
 
     public Long getId() {
         return id;
@@ -43,11 +43,11 @@ public class Recipe {
         this.cuisine_type = cuisine_type;
     }
 
-    public List<Long> getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<Long> ingredients) {
+    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 

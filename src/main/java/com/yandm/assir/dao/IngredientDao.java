@@ -2,6 +2,7 @@ package com.yandm.assir.dao;
 
 import com.yandm.assir.model.Ingredient;
 
+import java.util.List;
 import java.util.Set;
 
 public interface IngredientDao {
@@ -12,7 +13,7 @@ public interface IngredientDao {
 
    void removeIngredient(int ingredientId);
 
-   Ingredient getIngredientById(int ingredientId);
+   List<Ingredient> getIngredientsById(String strIngredientsIds);
 
     Set<Ingredient> getIngredients();
 }

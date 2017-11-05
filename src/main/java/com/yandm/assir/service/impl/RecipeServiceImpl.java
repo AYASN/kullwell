@@ -15,7 +15,6 @@ public class RecipeServiceImpl implements RecipeService {
    @Override
    public Set<Recipe> getRecipes() {
       return recipeDao.getRecipes();
-
    }
 
    @Override

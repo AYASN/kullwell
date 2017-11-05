@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import com.yandm.assir.dao.ConnectionFactory;
 import com.yandm.assir.dao.DbUtil;
 import com.yandm.assir.dao.IngredientDao;
 import com.yandm.assir.model.Ingredient;
-import com.yandm.assir.model.Recipe;
 
 public class IngredientDaoImpl implements IngredientDao {
    private Statement statement;
@@ -44,28 +44,29 @@ public class IngredientDaoImpl implements IngredientDao {
    }
 
    @Override
-   public Ingredient getIngredientById(int ingredientId) {
+   public List<Ingredient> getIngredientsById(String strIngredientsIds) {
       String query = "SELECT *\n" +
             "FROM ingredients\n" +
-            "WHERE id = " + ingredientId;
+            "WHERE id IN (" + strIngredientsIds + ");";
       connection = ConnectionFactory.getConnection();
-      Ingredient ingredient = null;
+      List<Ingredient> ingredients = new ArrayList<>();
+
       try {
          Statement statement = connection.createStatement();
          ResultSet resultSet = statement.executeQuery(query);
 
          while (resultSet.next()) {
-            ingredient = newIngredient(resultSet.getLong("id"),
+            ingredients.add(newIngredient(resultSet.getLong("id"),
                   resultSet.getString("name"),
                   resultSet.getInt("calories"),
-                  resultSet.getString("season"));
+                  resultSet.getString("season")));
          }
 
       } catch (SQLException e) {
          e.printStackTrace();
       }
 
-      return ingredient;
+      return ingredients;
    }
 
    @Override

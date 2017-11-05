@@ -26,13 +26,12 @@
             <td>${recipe.cuisine_type}</td>
             <td>
                <c:forEach items="${recipe.ingredients}" var="ingredient">
-                  ${ingredient},
+                  ${ingredient.name},
                </c:forEach>
             </td>
             <td>
                <a href="/getIngredients/edit?id=${recipe.id}&name=${recipe.name}
-               &description=${recipe.description}&cuisine_type=${recipe.cuisine_type}
-               &ingredients=${recipe.ingredients}">Edit</a>
+               &description=${recipe.description}&cuisine_type=${recipe.cuisine_type}">Edit</a>
             </td>
             <td>
                <a href="/recipe/remove?id=${recipe.id}">Remove</a>

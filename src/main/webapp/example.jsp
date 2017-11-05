@@ -4,10 +4,5 @@
 <head>
 </head>
 <body>
-<c:forEach items="${recipes}" var="recipe">
-    <c:forEach>
-
-    </c:forEach>
-</c:forEach>
 </body>
 </html>

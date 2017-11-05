@@ -12,11 +12,11 @@
         <input type="text" name="cuisine_type" value="${param.cuisine_type}" />
 
         <%--<c:set var="strSelectedIngredients" value="${strSelectedIngredients}"/>--%>
-        <select name="ingredients" multiple>
+        <select name="slcIngredients" multiple>
             <c:forEach items="${ingredients}" var="ingredient">
                 <c:set var = "ingredientID" value = "${ingredient.id}"/>
                 <c:choose>
-                    <c:when test="${fn:contains(strSelectedIngredients, ingredientID)}">
+                    <c:when test="${fn:contains(strPreSelectedIngredients, ingredientID)}">
                         <option value="${ingredient.id}" selected>${ingredient.name}</option>
                     </c:when>
                     <c:otherwise>
@@ -30,14 +30,13 @@
     </form>
 
     <p>Selected ingredients for this recipe :</p><br>
-    <c:forEach items="${selectedIngredients}" var="ingredient">
-        ${ingredient},
+    <c:forEach items="${preSelectedIngredients}" var="ingredient">
+        ${ingredient.name},
     </c:forEach>
     <br>
-    <p>${strSelectedIngredients}</p>
+    <p>${strPreSelectedIngredients}</p>
 
-    <c:set var = "strSelectedIngredients" value = "${strSelectedIngredients}"/>
-
+    <c:set var = "strPreSelectedIngredients" value = "${strPreSelectedIngredients}"/>
 </head>
 <body>
 </body>

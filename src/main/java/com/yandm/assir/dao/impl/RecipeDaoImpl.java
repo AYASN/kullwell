@@ -11,6 +11,7 @@ import com.yandm.assir.dao.ConnectionFactory;
 import com.yandm.assir.dao.DbUtil;
 import com.yandm.assir.dao.RecipeDao;
 import com.yandm.assir.dao.RecipeIngredientDao;
+import com.yandm.assir.model.Ingredient;
 import com.yandm.assir.model.Recipe;
 
 public class RecipeDaoImpl implements RecipeDao {
@@ -57,9 +58,9 @@ public class RecipeDaoImpl implements RecipeDao {
             String description = resultSet.getString("description");
             String cuisine_type = resultSet.getString("cuisine_type");
 
-            List<Long> ingredientIds = recipeIngredientDao.getIngredientsOfRecipe(id);
+            List<Ingredient> ingredients = recipeIngredientDao.getIngredientsOfRecipe(id);
 
-            recipes.add(newRecipe(id, name, description, cuisine_type, ingredientIds));
+            recipes.add(newRecipe(id, name, description, cuisine_type, ingredients));
          }
 
       } catch (SQLException e) {
@@ -101,11 +102,11 @@ public class RecipeDaoImpl implements RecipeDao {
          ResultSet resultSet = statement.executeQuery(query);
 
          while (resultSet.next()) {
-            List<Long> ingredientIds = null;
+            List<Ingredient> ingredients = null;
             recipe = newRecipe(resultSet.getLong("id"),
                   resultSet.getString("name"),
                   resultSet.getString("description"),
-                  resultSet.getString("cuisine_type"), ingredientIds);
+                  resultSet.getString("cuisine_type"), ingredients);
          }
 
       } catch (SQLException e) {
@@ -115,13 +116,14 @@ public class RecipeDaoImpl implements RecipeDao {
       return recipe;
    }
 
-   private Recipe newRecipe(long id, String name, String description, String cuisine_type, List<Long> ingredientIds) {
+   private Recipe newRecipe(long id, String name, String description, String cuisine_type,
+                            List<Ingredient> ingredients) {
       Recipe recipe = new Recipe();
       recipe.setId(id);
       recipe.setName(name);
       recipe.setDescription(description);
       recipe.setCuisine_type(cuisine_type);
-      recipe.setIngredients(ingredientIds);
+      recipe.setIngredients(ingredients);
       return recipe;
    }
 
