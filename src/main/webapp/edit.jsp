@@ -5,7 +5,7 @@
 <html>
 <head>
     <h1>Edit the recipe info :</h1>
-    <form action="/recipe/edit" method="get">
+    <form action="/recipe/edit" method="post">
         <input type="hidden" name="id" value="${param.id}" />
         <input type="text" name="name" value="${param.name}" />
         <input type="text" name="description" value="${param.description}" />

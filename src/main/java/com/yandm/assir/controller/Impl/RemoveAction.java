@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class RemoveAction implements Action{
+
+    RecipeService recipeService = new RecipeServiceImpl();
+
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) {
 
-        RecipeService recipeService = new RecipeServiceImpl();
         Long id = Long.valueOf(req.getParameter("id"));
         recipeService.removeRecipe(id);
     }

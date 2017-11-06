@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Enter recipe details :</h1>
-    <form action="/recipe/add" method="get">
+    <form action="/recipe/add" method="post">
         <input type="text" name="name" value="" />
         <input type="text" name="description" value="" />
         <input type="text" name="cuisine_type" value="" />
@@ -21,6 +21,5 @@
         <%--%>--%>
         <input type="submit" name="addRecipe" value="Add Recipe"/>
     </form>
-
 </body>
 </html>

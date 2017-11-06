@@ -13,9 +13,11 @@ import java.io.IOException;
 import java.util.Set;
 
 public class ReadAction implements Action{
+
+    RecipeService recipeService = new RecipeServiceImpl();
+
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RecipeService recipeService = new RecipeServiceImpl();
         Set<Recipe> recipes = recipeService.getRecipes();
         req.setAttribute("recipes", recipes);
 

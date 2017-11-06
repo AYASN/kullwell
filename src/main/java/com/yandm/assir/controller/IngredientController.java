@@ -23,29 +23,18 @@ public class IngredientController extends HttpServlet {
     private RecipeIngredientService recipeIngredientService = new RecipeIngredientServiceImpl();
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
-
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         Set<Ingredient> ingredients = ingredientService.getIngredients();
         req.setAttribute("ingredients", ingredients);
-
-
 
         String reqPathType = req.getPathInfo().substring(1);
         if (reqPathType.equalsIgnoreCase("edit")) {
             String recipeID = req.getParameter("id");
-            List<Ingredient> ingredientsOfRecipeToEdit = new ArrayList<>();
+            List<Ingredient> ingredientsOfRecipeToEdit;
             ingredientsOfRecipeToEdit = recipeIngredientService.getIngredientsOfRecipe(Long.valueOf(recipeID));
 
             String strIngredientsIds;
             strIngredientsIds = extractIdsAndConvertToString(ingredientsOfRecipeToEdit);
 
-//            String[] selectedIngredients = req.getParameterValues("ingredients");
-//            if (selectedIngredients != null) {
-//                strIngredientsIds = String.join(",", selectedIngredients);
-//            }
             req.setAttribute("preSelectedIngredients", ingredientsOfRecipeToEdit);
             req.setAttribute("strPreSelectedIngredients", strIngredientsIds);
             req.getRequestDispatcher("/edit.jsp").forward(req, resp);
@@ -55,8 +44,12 @@ public class IngredientController extends HttpServlet {
         }
     }
 
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
+
     private String extractIdsAndConvertToString(List<Ingredient> ingredientsOfRecipeToEdit) {
-        String ingredientsIds = null;
+        String ingredientsIds = "";
         for (int i=0; i<ingredientsOfRecipeToEdit.size(); i++) {
             Long id = ingredientsOfRecipeToEdit.get(i).getId();
             ingredientsIds = ingredientsIds + id + ",";
