@@ -6,7 +6,13 @@
 </head>
 <body>
    <h1>Al Salamo Alykom from the jsp</h1>
-   <h2><a href="/recipe/read">Show Recipes</a></h2>
+   <h2>
+      <form action="/recipe/read" method="post">
+         <input type="submit" name="readRecipe" value="Show Recipes"/>
+      </form>
+   </h2>
+      <%--<a href="/recipe/read">Show Recipes</a>--%>
+
    <h1>${recipes}</h1>
 
    <table>
@@ -30,18 +36,27 @@
                </c:forEach>
             </td>
             <td>
-               <a href="/getIngredients/edit?id=${recipe.id}&name=${recipe.name}
-               &description=${recipe.description}&cuisine_type=${recipe.cuisine_type}">Edit</a>
+               <form action="/getIngredients/edit" method="post">
+                  <input hidden name="id" value="${recipe.id}">
+                  <input hidden name="name" value="${recipe.name}">
+                  <input hidden name="description" value="${recipe.description}">
+                  <input hidden name="cuisine_type" value="${recipe.cuisine_type}">
+                  <input type="submit" name="editRecipe" value="Edit"/>
+               </form>
             </td>
             <td>
-               <a href="/recipe/remove?id=${recipe.id}">Remove</a>
+               <%--<a href="/recipe/remove?id=${recipe.id}">Remove</a>--%>
+               <form action="/recipe/remove" method="post">
+                  <input hidden name="id" value="${recipe.id}">
+                  <input type="submit" name="removeRecipe" value="Remove"/>
+               </form>
             </td>
          </tr>
 
       </c:forEach>
    </table>
 
-   <form action="/getIngredients/add" method="get">
+   <form action="/getIngredients/add" method="post">
       <input type="submit" name="addRecipe" value="Add Recipe"/>
    </form>
    <br>
