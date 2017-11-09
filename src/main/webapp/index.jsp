@@ -5,7 +5,7 @@
    <title>Welcome Page</title>
 </head>
 <body>
-   <h1>Al Salamo Alykom from the jsp</h1>
+   <h1><a href="find.jsp">Find your perfect meals for the week</a></h1>
    <h2><a href="/recipe/read">Show Recipes</a></h2>
    <h1>${recipes}</h1>
 

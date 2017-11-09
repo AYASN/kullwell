@@ -14,6 +14,15 @@
    </servlet-mapping>
 
    <servlet>
+      <servlet-name>Recipe Ingredient Controller</servlet-name>
+      <servlet-class>com.yandm.assir.controller.RecipeIngredientController</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>Recipe Ingredient Controller</servlet-name>
+      <url-pattern>/recipe/ingredient/*</url-pattern>
+   </servlet-mapping>
+
+   <servlet>
       <servlet-name>Ingredient Controller</servlet-name>
       <servlet-class>com.yandm.assir.controller.IngredientController</servlet-class>
    </servlet>

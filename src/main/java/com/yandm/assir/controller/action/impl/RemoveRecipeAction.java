@@ -1,4 +1,4 @@
-package com.yandm.assir.controller.Impl;
+package com.yandm.assir.controller.impl;
 
 import com.yandm.assir.controller.Action;
 import com.yandm.assir.service.RecipeService;

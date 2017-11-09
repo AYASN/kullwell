@@ -1,16 +1,19 @@
 package com.yandm.assir.dao.impl;
 
+import static java.util.Collections.emptyList;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 import java.util.List;
-
+import java.util.Set;
 import com.yandm.assir.dao.ConnectionFactory;
 import com.yandm.assir.dao.DbUtil;
 import com.yandm.assir.dao.RecipeDao;
 import com.yandm.assir.dao.RecipeIngredientDao;
+import com.yandm.assir.model.Ingredient;
 import com.yandm.assir.model.Recipe;
 
 public class RecipeDaoImpl implements RecipeDao {
@@ -46,7 +49,7 @@ public class RecipeDaoImpl implements RecipeDao {
       String query = "SELECT * FROM recipes";
       HashSet<Recipe> recipes = new HashSet<>();
       connection = ConnectionFactory.getConnection();
-
+      Recipe recipe = null;
       try {
          Statement statement = connection.createStatement();
          ResultSet resultSet = statement.executeQuery(query);
@@ -67,6 +70,49 @@ public class RecipeDaoImpl implements RecipeDao {
       }
 
       return recipes;
+   }
+
+   @Override
+   public Set<Recipe> getRecipesByIdIngredients(List idIngredients) {
+      String query = "SELECT ri.id_ingredients, r.id, r.name, r.description, r.cuisine_type " +
+            "FROM recipes_ingredients AS ri  " +
+            "INNER JOIN recipes AS r " +
+            "On ri.id_recipes = r.id " +
+            "WHERE ri.id_ingredients in " + formatIds(idIngredients) + ";";
+
+      connection = ConnectionFactory.getConnection();
+      Set<Recipe> recipes = new HashSet<>();
+      try {
+         Statement statement = connection.createStatement();
+         ResultSet resultSet = statement.executeQuery(query);
+
+         while (resultSet.next()) {
+            recipes.add(newRecipe(resultSet.getLong("id"),
+                  resultSet.getString("name"),
+                  resultSet.getString("description"),
+                  resultSet.getString("cuisine_type")));
+         }
+
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+
+      return recipes;
+   }
+
+   private Recipe newRecipe(long id, String name, String description, String cuisine_type) {
+      return newRecipe(id,name,description,cuisine_type, emptyList());
+   }
+
+   static String formatIds(List<Long> idIngredients) {
+      StringBuilder result = new StringBuilder("(");
+      for (Long idIngredient : idIngredients) {
+         result.append(idIngredient);
+         result.append(",");
+      }
+      int lastCommaIndex = result.lastIndexOf(",");
+      result.replace(lastCommaIndex, lastCommaIndex + 1, ")");
+      return result.toString();
    }
 
    @Override
@@ -91,7 +137,7 @@ public class RecipeDaoImpl implements RecipeDao {
 
    @Override
    public Recipe getRecipeByName(String recipeName) {
-      String query = "SELECT *\n" +
+      String query = "SELECT *" +
             "FROM recipes " + recipeName + "";
 
       connection = ConnectionFactory.getConnection();

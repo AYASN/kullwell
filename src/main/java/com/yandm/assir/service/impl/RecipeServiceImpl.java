@@ -1,5 +1,6 @@
 package com.yandm.assir.service.impl;
 
+import java.util.List;
 import java.util.Set;
 import com.yandm.assir.dao.RecipeDao;
 import com.yandm.assir.dao.RecipeIngredientDao;
@@ -15,7 +16,11 @@ public class RecipeServiceImpl implements RecipeService {
    @Override
    public Set<Recipe> getRecipes() {
       return recipeDao.getRecipes();
+   }
 
+   @Override
+   public Set<Recipe> getRecipesByIdIngredients(List idIngredients) {
+      return recipeDao.getRecipesByIdIngredients(idIngredients);
    }
 
    @Override
