@@ -21,7 +21,7 @@ public class ReadAction implements Action{
         Set<Recipe> recipes = recipeService.getRecipes();
         req.setAttribute("recipes", recipes);
 
-        req.getRequestDispatcher("/index.jsp").forward(req, resp);
+//        req.getRequestDispatcher("/read.jsp").forward(req, resp);
 
     }
 }

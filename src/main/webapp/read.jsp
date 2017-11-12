@@ -6,8 +6,7 @@
 
     <link rel = "stylesheet" href = "/styles/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/styles/default.css">
-    <link rel="stylesheet" type="text/css" href="/styles/add.css">
-    <%--<link rel="stylesheet" type="text/css" href="chosen_v1.4.0/chosen.min.css">--%>
+
 </head>
 
 <body>
@@ -22,7 +21,7 @@
                         <span class="hidden-sm hidden-xs">Dashboard</span>
                     </a>
                 </li>
-                <li class="link">
+                <li class="link active">
                     <a>
                         <form action="/recipe/read" method="post">
                             <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
@@ -30,7 +29,7 @@
                         </form>
                     </a>
                 </li>
-                <li class="link active">
+                <li class="link">
                     <a>
                         <form action="/getIngredients/add" method="post">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -92,42 +91,75 @@
             </div>
 
             <div id="content">
-                <header>
-                    <h2 class="page-title">Add new recipe</h2>
+                <header class="clearfix">
+                    <h2 class="page-title pull-left">All recipes</h2>
+                    <button type="button" class="btn btn-xs btn-primary pull-right">Add new recipe</button>
                 </header>
 
-                <div class="content-inner">
-                    <div class="form-wrapper clearfix">
-                        <form action="/recipe/add" method="post">
-                            <div class="form-group">
-                                <label class="sr-only">Name</label>
-                                <input type="text" class="form-control" name="name" value="" placeholder="Name" />
+                <div id="content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <input type="text" name="name" id="inputID" class="form-control" placeholder="Search">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary">Go !</button>
+                                </span>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="form-group">
-                                <label class="sr-only">Description</label>
-                                <input type="text" class="form-control" name="description" value="" placeholder="Description" />
-                            </div>
+                    <div class="row">
+                        <div class="col-md-12">
 
-                            <div class="form-group">
-                                <label class="sr-only">Cuisine type</label>
-                                <input type="text" class="form-control" name="cuisine_type" value="" placeholder="Cuisine type" />
-                            </div>
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Cuisine type</th>
+                                    <th>Ingredients</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
 
-                            <div class="form-group">
-                                <label class="sr-only">Ingredients</label>
-                                <select name="slcIngredients" multiple class="form-control">
-                                        <c:forEach items="${ingredients}" var="ingredient">
-                                            <option value="${ingredient.id}">${ingredient.name}</option>
-                                        </c:forEach>
-                                </select>
-                            </div>
-                            <button type="submit" name="addRecipe" class="btn btn-primary pull-right">Save</button>
-                            <%--<button type="submit" class="btn btn-default">Submit</button>--%>
-                        </form>
+                                <c:forEach items="${recipes}" var="recipe">
+                                    <tr>
+                                        <td>${recipe.id}</td>
+                                        <td>${recipe.name}</td>
+                                        <td>${recipe.description}</td>
+                                        <td>${recipe.cuisine_type}</td>
+                                        <td>
+                                            <c:forEach items="${recipe.ingredients}" var="ingredient">
+                                                ${ingredient.name},
+                                            </c:forEach>
+                                        </td>
+                                        <div>
+                                            <td class="pull-right">
+                                                <form class="btn btn-xs btn-default" action="/getIngredients/edit" method="post">
+                                                    <input hidden name="id" value="${recipe.id}"/>
+                                                    <input hidden name="name" value="${recipe.name}"/>
+                                                    <input hidden name="description" value="${recipe.description}"/>
+                                                    <input hidden name="cuisine_type" value="${recipe.cuisine_type}"/>
+                                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                    <input type="submit" name="editRecipe" value="Edit"/>
+                                                </form>
+                                            </td>
+                                            <td class="pull-right">
+                                                <form class="btn btn-xs btn-default" action="/recipe/remove" method="post">
+                                                    <input hidden name="id" value="${recipe.id}"/>
+                                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                                    <input type="submit" name="removeRecipe" value="Remove"/>
+                                                </form>
+                                            </td>
+                                        </div>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
+            <br>
 
             <div class="row">
                 <footer id="admin-footer" class="clearfix">
@@ -140,9 +172,8 @@
     </div>
 </div>
 
-    <script src="scripts/js/bootstrap.min.js"></script>
-    <script src="scripts/script.js"></script>
-    <%--<script src="chosen_v1.4.0/chosen.jquery.min.js" />--%>
+<script src="scripts/js/bootstrap.min.js"></script>
+<script src="scripts/script.js"></script>
 
 </body>
 </html>

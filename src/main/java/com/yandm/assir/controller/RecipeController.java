@@ -43,9 +43,9 @@ public class RecipeController extends HttpServlet {
       Action action = actions.get(operation);
       action.execute(req, resp);
 
-      Set<Recipe> recipes = recipeService.getRecipes();
-      req.setAttribute("recipes", recipes);
+//      Set<Recipe> recipes = recipeService.getRecipes();
+//      req.setAttribute("recipes", recipes);
 
-      req.getRequestDispatcher("/index.jsp").forward(req, resp);
+      req.getRequestDispatcher("/read.jsp").forward(req, resp);
    }
 }
