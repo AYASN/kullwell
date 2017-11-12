@@ -22,6 +22,15 @@
       <url-pattern>/admin/getIngredients/*</url-pattern>
    </servlet-mapping>
 
+   <servlet>
+      <servlet-name>Login Controller</servlet-name>
+      <servlet-class>com.yandm.assir.bo.controller.LoginController</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>Login Controller</servlet-name>
+      <url-pattern>/admin/login</url-pattern>
+   </servlet-mapping>
+
    <welcome-file-list>
       <welcome-file>index.jsp</welcome-file>
       <welcome-file>admin/index.jsp</welcome-file>

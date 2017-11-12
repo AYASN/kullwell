@@ -1,16 +1,15 @@
 package com.yandm.assir.controller.impl;
 
-import com.yandm.assir.controller.Action;
-import com.yandm.assir.model.Ingredient;
-import com.yandm.assir.model.Recipe;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import com.yandm.assir.bo.service.IngredientService;
 import com.yandm.assir.bo.service.RecipeService;
 import com.yandm.assir.bo.service.impl.IngredientServiceImpl;
 import com.yandm.assir.bo.service.impl.RecipeServiceImpl;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
+import com.yandm.assir.controller.Action;
+import com.yandm.assir.model.Ingredient;
+import com.yandm.assir.model.Recipe;
 
 public class AddAction implements Action {
 
@@ -19,7 +18,6 @@ public class AddAction implements Action {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) {
-
         Recipe recipe;
         List<Ingredient> ingredients;
 
