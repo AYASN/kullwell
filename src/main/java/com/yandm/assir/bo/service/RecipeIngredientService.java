@@ -1,4 +1,4 @@
-package com.yandm.assir.service;
+package com.yandm.assir.bo.service;
 
 import com.yandm.assir.model.Ingredient;
 

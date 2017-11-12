@@ -1,9 +1,9 @@
-package com.yandm.assir.service.impl;
+package com.yandm.assir.bo.service.impl;
 
-import com.yandm.assir.dao.RecipeIngredientDao;
-import com.yandm.assir.dao.impl.RecipeIngredientDaoImpl;
+import com.yandm.assir.bo.dao.RecipeIngredientDao;
+import com.yandm.assir.bo.dao.impl.RecipeIngredientDaoImpl;
 import com.yandm.assir.model.Ingredient;
-import com.yandm.assir.service.RecipeIngredientService;
+import com.yandm.assir.bo.service.RecipeIngredientService;
 
 import java.util.List;
 

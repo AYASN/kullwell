@@ -1,4 +1,4 @@
-package com.yandm.assir.dao;
+package com.yandm.assir.bo.dao;
 
 import com.yandm.assir.model.Ingredient;
 

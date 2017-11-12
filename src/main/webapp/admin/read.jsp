@@ -23,7 +23,7 @@
                 </li>
                 <li class="link active">
                     <a>
-                        <form action="/recipe/read" method="post">
+                        <form action="/admin/recipe/read" method="post">
                             <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                             <input type="submit" name="readRecipe" value="Show Recipes"/>
                         </form>
@@ -31,7 +31,7 @@
                 </li>
                 <li class="link">
                     <a>
-                        <form action="/getIngredients/add" method="post">
+                        <form action="/admin/getIngredients/add" method="post">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             <input type="submit" name="addRecipe" value="Add Recipe"/>
                             <%--<span>Add recipe</span>--%>
@@ -135,7 +135,7 @@
                                         </td>
                                         <div>
                                             <td class="pull-right">
-                                                <form class="btn btn-xs btn-default" action="/getIngredients/edit" method="post">
+                                                <form class="btn btn-xs btn-default" action="/admin/getIngredients/edit" method="post">
                                                     <input hidden name="id" value="${recipe.id}"/>
                                                     <input hidden name="name" value="${recipe.name}"/>
                                                     <input hidden name="description" value="${recipe.description}"/>
@@ -145,7 +145,7 @@
                                                 </form>
                                             </td>
                                             <td class="pull-right">
-                                                <form class="btn btn-xs btn-default" action="/recipe/remove" method="post">
+                                                <form class="btn btn-xs btn-default" action="/admin/recipe/remove" method="post">
                                                     <input hidden name="id" value="${recipe.id}"/>
                                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                                     <input type="submit" name="removeRecipe" value="Remove"/>
@@ -172,8 +172,8 @@
     </div>
 </div>
 
-<script src="scripts/js/bootstrap.min.js"></script>
-<script src="scripts/script.js"></script>
+<script src="../scripts/js/bootstrap.min.js"></script>
+<script src="../scripts/script.js"></script>
 
 </body>
 </html>

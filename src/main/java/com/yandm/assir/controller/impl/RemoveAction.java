@@ -1,8 +1,8 @@
-package com.yandm.assir.controller.Impl;
+package com.yandm.assir.controller.impl;
 
 import com.yandm.assir.controller.Action;
-import com.yandm.assir.service.RecipeService;
-import com.yandm.assir.service.impl.RecipeServiceImpl;
+import com.yandm.assir.bo.service.RecipeService;
+import com.yandm.assir.bo.service.impl.RecipeServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -6,24 +6,25 @@
 
    <servlet>
       <servlet-name>Recipe Controller</servlet-name>
-      <servlet-class>com.yandm.assir.controller.RecipeController</servlet-class>
+      <servlet-class>com.yandm.assir.bo.controller.RecipeController</servlet-class>
    </servlet>
    <servlet-mapping>
       <servlet-name>Recipe Controller</servlet-name>
-      <url-pattern>/recipe/*</url-pattern>
+      <url-pattern>/admin/recipe/*</url-pattern>
    </servlet-mapping>
 
    <servlet>
       <servlet-name>Ingredient Controller</servlet-name>
-      <servlet-class>com.yandm.assir.controller.IngredientController</servlet-class>
+      <servlet-class>com.yandm.assir.bo.controller.IngredientController</servlet-class>
    </servlet>
    <servlet-mapping>
       <servlet-name>Ingredient Controller</servlet-name>
-      <url-pattern>/getIngredients/*</url-pattern>
+      <url-pattern>/admin/getIngredients/*</url-pattern>
    </servlet-mapping>
 
    <welcome-file-list>
       <welcome-file>index.jsp</welcome-file>
+      <welcome-file>admin/index.jsp</welcome-file>
    </welcome-file-list>
 
 </web-app>

@@ -1,19 +1,21 @@
-package com.yandm.assir.controller;
+package com.yandm.assir.bo.controller;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.yandm.assir.controller.Impl.AddAction;
-import com.yandm.assir.controller.Impl.EditAction;
-import com.yandm.assir.controller.Impl.ReadAction;
-import com.yandm.assir.controller.Impl.RemoveAction;
+import com.yandm.assir.bo.service.RecipeService;
+import com.yandm.assir.bo.service.impl.RecipeServiceImpl;
+import com.yandm.assir.controller.Action;
+import com.yandm.assir.controller.impl.AddAction;
+import com.yandm.assir.controller.impl.EditAction;
+import com.yandm.assir.controller.impl.ReadAction;
+import com.yandm.assir.controller.impl.RemoveAction;
 import com.yandm.assir.model.Recipe;
-import com.yandm.assir.service.RecipeService;
-import com.yandm.assir.service.impl.RecipeServiceImpl;
 
 public class RecipeController extends HttpServlet {
 
@@ -43,9 +45,9 @@ public class RecipeController extends HttpServlet {
       Action action = actions.get(operation);
       action.execute(req, resp);
 
-//      Set<Recipe> recipes = recipeService.getRecipes();
-//      req.setAttribute("recipes", recipes);
+      Set<Recipe> recipes = recipeService.getRecipes();
+      req.setAttribute("recipes", recipes);
 
-      req.getRequestDispatcher("/read.jsp").forward(req, resp);
+      req.getRequestDispatcher("/admin/read.jsp").forward(req, resp);
    }
 }

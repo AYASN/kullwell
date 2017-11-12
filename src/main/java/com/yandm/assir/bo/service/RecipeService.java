@@ -1,4 +1,4 @@
-package com.yandm.assir.service;
+package com.yandm.assir.bo.service;
 
 import java.util.Set;
 import com.yandm.assir.model.Recipe;

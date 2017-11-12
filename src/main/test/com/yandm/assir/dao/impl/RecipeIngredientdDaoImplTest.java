@@ -1,6 +1,7 @@
 package com.yandm.assir.dao.impl;
 
-import com.yandm.assir.dao.RecipeIngredientDao;
+import com.yandm.assir.bo.dao.RecipeIngredientDao;
+import com.yandm.assir.bo.dao.impl.RecipeIngredientDaoImpl;
 import com.yandm.assir.model.Ingredient;
 import org.junit.Test;
 

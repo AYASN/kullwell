@@ -1,8 +1,7 @@
-package com.yandm.assir.dao;
-
-import com.yandm.assir.model.Ingredient;
+package com.yandm.assir.bo.dao;
 
 import java.util.List;
+import com.yandm.assir.model.Ingredient;
 
 public interface RecipeIngredientDao {
 

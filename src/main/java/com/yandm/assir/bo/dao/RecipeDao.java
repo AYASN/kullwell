@@ -1,4 +1,4 @@
-package com.yandm.assir.dao;
+package com.yandm.assir.bo.dao;
 
 import java.util.Set;
 import com.yandm.assir.model.Recipe;

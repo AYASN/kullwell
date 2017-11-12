@@ -1,8 +1,8 @@
-package com.yandm.assir.dao.impl;
+package com.yandm.assir.bo.dao.impl;
 
 import com.yandm.assir.dao.ConnectionFactory;
 import com.yandm.assir.dao.DbUtil;
-import com.yandm.assir.dao.RecipeIngredientDao;
+import com.yandm.assir.bo.dao.RecipeIngredientDao;
 import com.yandm.assir.model.Ingredient;
 
 import java.sql.Connection;

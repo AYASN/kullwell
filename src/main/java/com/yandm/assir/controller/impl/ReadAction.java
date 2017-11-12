@@ -1,10 +1,9 @@
-package com.yandm.assir.controller.Impl;
+package com.yandm.assir.controller.impl;
 
 import com.yandm.assir.controller.Action;
-import com.yandm.assir.dao.impl.RecipeDaoImpl;
 import com.yandm.assir.model.Recipe;
-import com.yandm.assir.service.RecipeService;
-import com.yandm.assir.service.impl.RecipeServiceImpl;
+import com.yandm.assir.bo.service.RecipeService;
+import com.yandm.assir.bo.service.impl.RecipeServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

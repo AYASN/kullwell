@@ -1,12 +1,12 @@
-package com.yandm.assir.service.impl;
+package com.yandm.assir.bo.service.impl;
 
 import java.util.Set;
-import com.yandm.assir.dao.RecipeDao;
-import com.yandm.assir.dao.RecipeIngredientDao;
-import com.yandm.assir.dao.impl.RecipeDaoImpl;
-import com.yandm.assir.dao.impl.RecipeIngredientDaoImpl;
+import com.yandm.assir.bo.dao.RecipeDao;
+import com.yandm.assir.bo.dao.RecipeIngredientDao;
+import com.yandm.assir.bo.dao.impl.RecipeDaoImpl;
+import com.yandm.assir.bo.dao.impl.RecipeIngredientDaoImpl;
 import com.yandm.assir.model.Recipe;
-import com.yandm.assir.service.RecipeService;
+import com.yandm.assir.bo.service.RecipeService;
 
 public class RecipeServiceImpl implements RecipeService {
    private RecipeDao recipeDao = new RecipeDaoImpl();

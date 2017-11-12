@@ -5,10 +5,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import com.yandm.assir.dao.IngredientDao;
+import com.yandm.assir.bo.dao.IngredientDao;
+import com.yandm.assir.bo.dao.impl.IngredientDaoImpl;
 import com.yandm.assir.model.Ingredient;
-
-import java.util.HashSet;
 
 public class IngredientDaoImplTest {
    private Ingredient ingredient;

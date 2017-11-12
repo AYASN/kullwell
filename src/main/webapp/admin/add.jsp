@@ -24,7 +24,7 @@
                 </li>
                 <li class="link">
                     <a>
-                        <form action="/recipe/read" method="post">
+                        <form action="/admin/recipe/read" method="post">
                             <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                             <input type="submit" name="readRecipe" value="Show Recipes"/>
                         </form>
@@ -32,7 +32,7 @@
                 </li>
                 <li class="link active">
                     <a>
-                        <form action="/getIngredients/add" method="post">
+                        <form action="/admin/getIngredients/add" method="post">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             <input type="submit" name="addRecipe" value="Add Recipe"/>
                             <%--<span>Add recipe</span>--%>
@@ -98,7 +98,7 @@
 
                 <div class="content-inner">
                     <div class="form-wrapper clearfix">
-                        <form action="/recipe/add" method="post">
+                        <form action="/admin/recipe/add" method="post">
                             <div class="form-group">
                                 <label class="sr-only">Name</label>
                                 <input type="text" class="form-control" name="name" value="" placeholder="Name" />
@@ -140,8 +140,8 @@
     </div>
 </div>
 
-    <script src="scripts/js/bootstrap.min.js"></script>
-    <script src="scripts/script.js"></script>
+    <script src="../scripts/js/bootstrap.min.js"></script>
+    <script src="../scripts/script.js"></script>
     <%--<script src="chosen_v1.4.0/chosen.jquery.min.js" />--%>
 
 </body>
