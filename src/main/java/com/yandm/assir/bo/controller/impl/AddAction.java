@@ -1,13 +1,15 @@
-package com.yandm.assir.controller.impl;
+package com.yandm.assir.bo.controller.impl;
 
+import java.io.IOException;
 import java.util.List;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.yandm.assir.bo.service.IngredientService;
 import com.yandm.assir.bo.service.RecipeService;
 import com.yandm.assir.bo.service.impl.IngredientServiceImpl;
 import com.yandm.assir.bo.service.impl.RecipeServiceImpl;
-import com.yandm.assir.controller.Action;
+import com.yandm.assir.bo.controller.Action;
 import com.yandm.assir.model.Ingredient;
 import com.yandm.assir.model.Recipe;
 
@@ -17,7 +19,7 @@ public class AddAction implements Action {
     IngredientService ingredientService = new IngredientServiceImpl();
 
     @Override
-    public void execute(HttpServletRequest req, HttpServletResponse resp) {
+    public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Recipe recipe;
         List<Ingredient> ingredients;
 
@@ -26,8 +28,11 @@ public class AddAction implements Action {
         String cuisine_type = req.getParameter("cuisine_type");
 
         String[] ingredientsIds = req.getParameterValues("slcIngredients");
-        String strIngredientsIds = convertFromTableToString(ingredientsIds);
+        if (name == null || description == null || ingredientsIds == null) {
+            req.getRequestDispatcher("/admin/getIngredients/add").forward(req, resp);
+        }
 
+        String strIngredientsIds = convertFromTableToString(ingredientsIds);
         ingredients = ingredientService.getIngredientsById(strIngredientsIds);
 
         recipe = newRecipe(name, description, cuisine_type, ingredients);

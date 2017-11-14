@@ -1,4 +1,4 @@
-package com.yandm.assir.controller;
+package com.yandm.assir.bo.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

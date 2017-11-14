@@ -10,11 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.yandm.assir.bo.service.RecipeService;
 import com.yandm.assir.bo.service.impl.RecipeServiceImpl;
-import com.yandm.assir.controller.Action;
-import com.yandm.assir.controller.impl.AddAction;
-import com.yandm.assir.controller.impl.EditAction;
-import com.yandm.assir.controller.impl.ReadAction;
-import com.yandm.assir.controller.impl.RemoveAction;
+import com.yandm.assir.bo.controller.impl.AddAction;
+import com.yandm.assir.bo.controller.impl.EditAction;
+import com.yandm.assir.bo.controller.impl.ReadAction;
+import com.yandm.assir.bo.controller.impl.RemoveAction;
 import com.yandm.assir.model.Recipe;
 
 public class RecipeController extends HttpServlet {
