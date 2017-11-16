@@ -31,6 +31,15 @@
       <url-pattern>/admin/login</url-pattern>
    </servlet-mapping>
 
+   <filter>
+      <filter-name>loginFilter</filter-name>
+      <filter-class>com.yandm.assir.bo.controller.LoginFilter</filter-class>
+   </filter>
+   <filter-mapping>
+      <filter-name>loginFilter</filter-name>
+      <url-pattern>/admin/*</url-pattern>
+   </filter-mapping>
+
    <welcome-file-list>
       <welcome-file>index.jsp</welcome-file>
       <welcome-file>admin/index.jsp</welcome-file>

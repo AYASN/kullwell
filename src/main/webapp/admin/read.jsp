@@ -1,5 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <html>
 <head>
     <title>Welcome Page</title>
@@ -84,6 +85,9 @@
                                     </tr>
                                 </c:forEach>
                             </table>
+                            <p>${removeSuccess}</p>
+                            <p>${removeError}</p>
+
                         </div>
                     </div>
                 </div>

@@ -32,10 +32,6 @@ public class RecipeController extends HttpServlet {
    @Override
    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-//      Set<Recipe> recipes = recipeService.getRecipes();
-//      req.setAttribute("recipes", recipes);
-//
-//      req.getRequestDispatcher("/index.jsp").forward(req, resp);
    }
 
    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

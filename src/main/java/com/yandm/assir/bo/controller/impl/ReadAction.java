@@ -18,9 +18,5 @@ public class ReadAction implements Action{
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Set<Recipe> recipes = recipeService.getRecipes();
-        req.setAttribute("recipes", recipes);
-
-//        req.getRequestDispatcher("/read.jsp").forward(req, resp);
-
     }
 }

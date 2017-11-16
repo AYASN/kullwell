@@ -70,17 +70,15 @@
                         </form>
                     </div>
                 </div>
+                <p>${editError}</p>
 
-
-                <p>Selected ingredients for this recipe :</p><br>
+                <p>Preselected ingredients for this recipe :</p><br>
                 <c:forEach items="${preSelectedIngredients}" var="ingredient">
                     ${ingredient.name},
                 </c:forEach>
-                <br>
                 <p>${strPreSelectedIngredients}</p>
                 <c:set var = "strPreSelectedIngredients" value = "${strPreSelectedIngredients}"/>
             </div>
-
 
             <jsp:include page="footer.jsp"/>
 
@@ -90,7 +88,6 @@
 
 <script src="../scripts/js/bootstrap.min.js"></script>
 <script src="../scripts/script.js"></script>
-<%--<script src="chosen_v1.4.0/chosen.jquery.min.js" />--%>
 
 </body>
 </html>

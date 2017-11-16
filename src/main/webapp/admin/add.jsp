@@ -31,29 +31,30 @@
                         <form action="/admin/recipe/add" method="post">
                             <div class="form-group">
                                 <label class="sr-only">Name</label>
-                                <input type="text" class="form-control" name="name" value="" placeholder="Name" required/>
+                                <input type="text" class="form-control" name="name" value="" placeholder="Name"/>
                             </div>
 
                             <div class="form-group">
                                 <label class="sr-only">Description</label>
-                                <input type="text" class="form-control" name="description" value="" placeholder="Description" required/>
+                                <input type="text" class="form-control" name="description" value="" placeholder="Description"/>
                             </div>
 
                             <div class="form-group">
                                 <label class="sr-only">Cuisine type</label>
-                                <input type="text" class="form-control" name="cuisine_type" value="" placeholder="Cuisine type" required/>
+                                <input type="text" class="form-control" name="cuisine_type" value="" placeholder="Cuisine type"/>
                             </div>
 
                             <div class="form-group">
                                 <label class="sr-only">Ingredients</label>
-                                <select name="slcIngredients" multiple class="form-control" required>
+                                <select name="slcIngredients" multiple class="form-control">
                                         <c:forEach items="${ingredients}" var="ingredient">
                                             <option value="${ingredient.id}">${ingredient.name}</option>
                                         </c:forEach>
                                 </select>
                             </div>
+
+                            <p>${addError}</p>
                             <button type="submit" name="addRecipe" class="btn btn-primary pull-right">Save</button>
-                            <%--<button type="submit" class="btn btn-default">Submit</button>--%>
                         </form>
                     </div>
                 </div>

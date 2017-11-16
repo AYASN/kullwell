@@ -1,5 +1,6 @@
 package com.yandm.assir.bo.controller.impl;
 
+import com.google.common.base.Strings;
 import com.yandm.assir.bo.controller.Action;
 import com.yandm.assir.model.Ingredient;
 import com.yandm.assir.model.Recipe;
@@ -8,10 +9,13 @@ import com.yandm.assir.bo.service.RecipeService;
 import com.yandm.assir.bo.service.impl.IngredientServiceImpl;
 import com.yandm.assir.bo.service.impl.RecipeServiceImpl;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class EditAction implements Action{
 
@@ -19,31 +23,37 @@ public class EditAction implements Action{
     IngredientService ingredientService = new IngredientServiceImpl();
 
     @Override
-    public void execute(HttpServletRequest req, HttpServletResponse resp) {
+    public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<Ingredient> ingredients = new ArrayList<>();
+        List<Ingredient> ingredients;
 
         String id = req.getParameter("id");
         String name = req.getParameter("name");
         String description = req.getParameter("description");
-        String cuisine_type = req.getParameter("cuisine_type");
-
+        String cuisineType = req.getParameter("cuisine_type");
         String[] ingredientsIds = req.getParameterValues("slcIngredients");
-        String strIngredientsIds = convertFromTableToString(ingredientsIds);
 
-        ingredients = ingredientService.getIngredientsById(strIngredientsIds);
+        if (Strings.isNullOrEmpty(id) || Strings.isNullOrEmpty(name) || Strings.isNullOrEmpty(description)
+                || Strings.isNullOrEmpty(cuisineType) || ingredientsIds == null) {
 
-        Recipe recipe = newRecipe(Long.valueOf(id), name, description, cuisine_type, ingredients);
-        recipeService.editRecipe(recipe);
+            req.setAttribute("editError", "Please fill in all fields of recipe to edit.");
+            req.getRequestDispatcher("/admin/getIngredients/edit").forward(req, resp);
+        } else {
+            String strIngredientsIds = convertFromTableToString(ingredientsIds);
+            ingredients = ingredientService.getIngredientsById(strIngredientsIds);
+
+            Recipe recipe = newRecipe(Long.valueOf(id), name, description, cuisineType, ingredients);
+            recipeService.editRecipe(recipe);
+        }
     }
 
-    private Recipe newRecipe(Long id, String name, String description, String cuisine_type,
+    private Recipe newRecipe(Long id, String name, String description, String cuisineType,
                              List<Ingredient> ingredients) {
         Recipe recipe = new Recipe();
         recipe.setId(id);
         recipe.setName(name);
         recipe.setDescription(description);
-        recipe.setCuisine_type(cuisine_type);
+        recipe.setCuisine_type(cuisineType);
         recipe.setIngredients(ingredients);
         return recipe;
     }

@@ -2,9 +2,12 @@ package com.yandm.assir.bo.controller.impl;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.common.base.Strings;
 import com.yandm.assir.bo.service.IngredientService;
 import com.yandm.assir.bo.service.RecipeService;
 import com.yandm.assir.bo.service.impl.IngredientServiceImpl;
@@ -25,18 +28,21 @@ public class AddAction implements Action {
 
         String name = req.getParameter("name");
         String description = req.getParameter("description");
-        String cuisine_type = req.getParameter("cuisine_type");
-
+        String cuisineType = req.getParameter("cuisine_type");
         String[] ingredientsIds = req.getParameterValues("slcIngredients");
-        if (name == null || description == null || ingredientsIds == null) {
+
+        if (Strings.isNullOrEmpty(name) || Strings.isNullOrEmpty(description)
+                || Strings.isNullOrEmpty(cuisineType) || ingredientsIds == null) {
+
+            req.setAttribute("addError", "Please fill in all recipe fields.");
             req.getRequestDispatcher("/admin/getIngredients/add").forward(req, resp);
+        }else {
+            String strIngredientsIds = convertFromTableToString(ingredientsIds);
+            ingredients = ingredientService.getIngredientsById(strIngredientsIds);
+
+            recipe = newRecipe(name, description, cuisineType, ingredients);
+            recipeService.createRecipe(recipe);
         }
-
-        String strIngredientsIds = convertFromTableToString(ingredientsIds);
-        ingredients = ingredientService.getIngredientsById(strIngredientsIds);
-
-        recipe = newRecipe(name, description, cuisine_type, ingredients);
-        recipeService.createRecipe(recipe);
     }
 
     private String convertFromTableToString(String[] ingredientsIds) {
@@ -47,12 +53,12 @@ public class AddAction implements Action {
         return strIngredientsIds;
     }
 
-    private Recipe newRecipe(String name, String description, String cuisine_type,
+    private Recipe newRecipe(String name, String description, String cuisineType,
                              List<Ingredient> ingredients) {
         Recipe recipe = new Recipe();
         recipe.setName(name);
         recipe.setDescription(description);
-        recipe.setCuisine_type(cuisine_type);
+        recipe.setCuisine_type(cuisineType);
         recipe.setIngredients(ingredients);
         return recipe;
     }

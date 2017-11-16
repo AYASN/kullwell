@@ -1,5 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <div class="row">
     <header id="nav-header" class="clearfix">
         <div class="col-md-5">

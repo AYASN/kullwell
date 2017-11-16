@@ -22,6 +22,7 @@ public class UserDaoImpl implements UserDao {
             query.setString(1, user.getUsername());
             query.setString(2, user.getPassword());
             ResultSet resultSet = query.executeQuery();
+            connection.close();
             isFound = resultSet.next();
         } catch (SQLException e) {
             e.printStackTrace();

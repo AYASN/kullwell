@@ -43,11 +43,6 @@ public class LoginController extends HttpServlet {
             req.getRequestDispatcher("/admin/login.jsp").forward(req, resp);
          }
       }
-
-//      if (name.equalsIgnoreCase("1")) {
-//         req.getRequestDispatcher("/admin/index.jsp").forward(req, resp);}
-//      } else {
-//      }
    }
 
    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

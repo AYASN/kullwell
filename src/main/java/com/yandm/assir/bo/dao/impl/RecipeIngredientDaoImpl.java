@@ -87,6 +87,7 @@ public class RecipeIngredientDaoImpl implements RecipeIngredientDao {
             DbUtil.close(statement);
         }
     }
+
     private void executeUpdate(String query) {
         connection = ConnectionFactory.getConnection();
         try {

@@ -1,10 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell valign-top clearfix" id="side-menu">
     <h1 class="hidden-sm hidden-xs">Al Salamo Alykom from the jsp</h1>
     <ul>
         <li class="link active">
-            <a href="/admin/recipe/read">
+            <a href="/admin/index.jsp">
                 <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Dashboard</span>
             </a>
