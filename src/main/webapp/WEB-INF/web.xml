@@ -38,6 +38,8 @@
    <filter-mapping>
       <filter-name>loginFilter</filter-name>
       <url-pattern>/admin/*</url-pattern>
+      <dispatcher>REQUEST</dispatcher>
+      <dispatcher>FORWARD</dispatcher>
    </filter-mapping>
 
    <welcome-file-list>

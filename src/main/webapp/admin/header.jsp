@@ -14,6 +14,7 @@
 
         <div class="col-md-7">
             <ul class="pull-right" >
+                <%--<li class="pull-left">${alreadyLoggedIn}</li>--%>
                 <li id="welcome" class="hidden-xs">Welcome to your administration area</li>
                 <li class="fixed-width">
                     <a href="#">

@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class LoginController extends HttpServlet {
 
@@ -35,6 +36,9 @@ public class LoginController extends HttpServlet {
          user.setUsername(username);
          user.setPassword(password);
          if (userService.isFound(user)) {
+            HttpSession session = req.getSession();
+            session.setAttribute("user", user);
+
             Set<Recipe> recipes = recipeService.getRecipes();
             req.setAttribute("recipes", recipes);
             req.getRequestDispatcher("/admin/index.jsp").forward(req, resp);

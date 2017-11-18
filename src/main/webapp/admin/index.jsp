@@ -69,6 +69,7 @@
                            </tr>
                         </c:forEach>
                      </table>
+                     <p class="pull-left">${alreadyLoggedIn}</p>
                   </div>
                </div>
             </div>
