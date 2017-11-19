@@ -27,7 +27,7 @@ public class LoginFilter implements Filter {
             if (excludedFromFilter(path)) {
                 chain.doFilter(req, resp);
             } else {
-                System.out.println("Not logged in!");
+//                System.out.println("Not logged in!");
                 resp.sendRedirect("/admin/login.jsp");
                 return;
             }
@@ -36,7 +36,7 @@ public class LoginFilter implements Filter {
                 session.setAttribute("alreadyLoggedIn", "You're already logged in!");
                 resp.sendRedirect("/admin/index.jsp");
             } else {
-                System.out.println("Logged In!");
+//                System.out.println("Logged In!");
                 chain.doFilter(req, resp);
             }
         }
