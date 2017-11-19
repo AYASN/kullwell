@@ -18,8 +18,7 @@ import javax.servlet.http.HttpSession;
 
 public class LoginController extends HttpServlet {
 
-   User user = new User();
-   UserService userService = new UserServiceImpl();
+   private UserService userService = new UserServiceImpl();
    private RecipeService recipeService = new RecipeServiceImpl();
 
 
@@ -32,6 +31,7 @@ public class LoginController extends HttpServlet {
    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       String username = req.getParameter("username");
       String password = req.getParameter("password");
+      User user = new User();
 
       if (Strings.isNullOrEmpty(username) || Strings.isNullOrEmpty(password)) {
          req.setAttribute("nullOrEmptyError", "Please fill in all fields");

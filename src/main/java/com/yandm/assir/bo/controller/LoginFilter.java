@@ -20,14 +20,13 @@ public class LoginFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
-        HttpSession session = req.getSession(false);
+        HttpSession session = req.getSession();
         String path = req.getRequestURI();
 
         if (session == null || session.getAttribute("user") == null) {
             if (excludedFromFilter(path)) {
                 chain.doFilter(req, resp);
             } else {
-//                System.out.println("Not logged in!");
                 resp.sendRedirect("/admin/login.jsp");
                 return;
             }
@@ -36,7 +35,6 @@ public class LoginFilter implements Filter {
                 session.setAttribute("alreadyLoggedIn", "You're already logged in!");
                 resp.sendRedirect("/admin/index.jsp");
             } else {
-//                System.out.println("Logged In!");
                 chain.doFilter(req, resp);
             }
         }

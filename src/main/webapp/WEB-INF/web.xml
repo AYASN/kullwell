@@ -42,6 +42,15 @@
       <dispatcher>FORWARD</dispatcher>
    </filter-mapping>
 
+   <servlet>
+      <servlet-name>Logout Controller</servlet-name>
+      <servlet-class>com.yandm.assir.bo.controller.LogoutController</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>Logout Controller</servlet-name>
+      <url-pattern>/admin/logout</url-pattern>
+   </servlet-mapping>
+
    <welcome-file-list>
       <welcome-file>index.jsp</welcome-file>
       <welcome-file>admin/index.jsp</welcome-file>

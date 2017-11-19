@@ -32,7 +32,7 @@
                   <span class="input-group-addon">
                      <span class="glyphicon glyphicon-lock"></span>
                   </span>
-                  <input type="text" class="form-control" name="password" value="" placeholder="Password"/>
+                  <input type="password" class="form-control" name="password" value="" placeholder="Password"/>
                </div>
 
                <button type="submit" name="login" class="btn btn-primary">Login</button>

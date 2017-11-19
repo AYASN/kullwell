@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="logout">
+                    <a href="/admin/logout" class="logout">
                         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                         Log out
                     </a>
