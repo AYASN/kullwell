@@ -2,9 +2,11 @@ package com.yandm.assir.bo.controller.impl.recipe;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.common.base.Strings;
 import com.yandm.assir.bo.controller.Action;
 import com.yandm.assir.bo.service.IngredientService;
 import com.yandm.assir.bo.service.RecipeService;
@@ -20,15 +22,7 @@ public class EditRecipeAction implements Action{
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        resp.getWriter().write("I'm in the edit action");
-        String nextAction = req.getParameter("nextAction");
-        if (nextAction.equals("ok") || nextAction.equals("cancel")) {
-            req.getRequestDispatcher("/admin/recipe/show");
-        }
-        if (nextAction.equals("ko")) {
-            req.getRequestDispatcher("/admin/recipe/edit");
-        }
-        /*List<Ingredient> ingredients;
+        List<Ingredient> ingredients;
 
         String id = req.getParameter("id");
         String name = req.getParameter("name");
@@ -40,14 +34,18 @@ public class EditRecipeAction implements Action{
                 || Strings.isNullOrEmpty(cuisineType) || ingredientsIds == null) {
 
             req.setAttribute("editError", "Please fill in all fields of recipe to edit.");
-            req.getRequestDispatcher("/admin/getIngredients/edit").forward(req, resp);
+            req.getRequestDispatcher("/admin/ingredient/retrieve/forRecipe").forward(req, resp);
         } else {
             String strIngredientsIds = convertFromTableToString(ingredientsIds);
             ingredients = ingredientService.getIngredientsById(strIngredientsIds);
 
             Recipe recipe = newRecipe(Long.valueOf(id), name, description, cuisineType, ingredients);
             recipeService.editRecipe(recipe);
-        }*/
+
+            Set<Recipe> recipes = recipeService.getRecipes();
+            req.setAttribute("recipes", recipes);
+            req.getRequestDispatcher("/admin/readRecipe.jsp").forward(req, resp);
+        }
     }
 
     private Recipe newRecipe(Long id, String name, String description, String cuisineType,

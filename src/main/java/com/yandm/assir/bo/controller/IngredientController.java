@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.yandm.assir.bo.controller.impl.ingredient.RetrieveAllIngredientAction;
-import com.yandm.assir.bo.controller.impl.ingredient.RetrieveFromRecipeIngredientAction;
+import com.yandm.assir.bo.controller.impl.ingredient.RetrieveIngredientForRecipeAction;
 
 public class IngredientController extends HttpServlet {
    private Map<String, Action> actions = new HashMap<>();
@@ -16,7 +16,7 @@ public class IngredientController extends HttpServlet {
    @Override
    public void init() {
       actions.put("all", new RetrieveAllIngredientAction());
-      actions.put("forRecipe", new RetrieveFromRecipeIngredientAction());
+      actions.put("forRecipe", new RetrieveIngredientForRecipeAction());
    }
 
    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

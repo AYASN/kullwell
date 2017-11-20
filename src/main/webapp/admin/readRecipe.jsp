@@ -28,7 +28,9 @@
             <div id="content">
                 <header class="clearfix">
                     <h2 class="page-title pull-left">All recipes</h2>
-                    <button type="button" class="btn btn-xs btn-primary pull-right">Add new recipe</button>
+                    <form action="/admin/ingredient/retrieve/all" method="post">
+                        <button type="submit" class="btn btn-xs btn-primary pull-right">Add new recipe</button>
+                    </form>
                 </header>
 
                 <div id="content-inner">
@@ -70,7 +72,7 @@
                                         </td>
                                         <div>
                                             <td class="pull-right">
-                                                <form class="btn btn-xs btn-default" action="/admin/ingredient/edit" method="post">
+                                                <form class="btn btn-xs btn-default" action="/admin/ingredient/retrieve/forRecipe" method="post">
                                                     <input hidden name="id" value="${recipe.id}"/>
                                                     <input hidden name="name" value="${recipe.name}"/>
                                                     <input hidden name="description" value="${recipe.description}"/>
