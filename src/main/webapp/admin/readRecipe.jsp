@@ -70,7 +70,7 @@
                                         </td>
                                         <div>
                                             <td class="pull-right">
-                                                <form class="btn btn-xs btn-default" action="/admin/getIngredients/edit" method="post">
+                                                <form class="btn btn-xs btn-default" action="/admin/ingredient/edit" method="post">
                                                     <input hidden name="id" value="${recipe.id}"/>
                                                     <input hidden name="name" value="${recipe.name}"/>
                                                     <input hidden name="description" value="${recipe.description}"/>
