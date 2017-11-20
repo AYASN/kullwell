@@ -1,12 +1,17 @@
 package com.yandm.assir.bo.controller;
 
-import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class LoginFilter implements Filter {
 
@@ -20,20 +25,20 @@ public class LoginFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
-        HttpSession session = req.getSession();
+        HttpSession session = req.getSession(false);
         String path = req.getRequestURI();
 
         if (session == null || session.getAttribute("user") == null) {
             if (excludedFromFilter(path)) {
                 chain.doFilter(req, resp);
             } else {
-                resp.sendRedirect("/admin/login.jsp");
+                resp.sendRedirect("/admin/index.jsp");
                 return;
             }
         }else {
             if (excludedFromFilter(path)) {
                 session.setAttribute("alreadyLoggedIn", "You're already logged in!");
-                resp.sendRedirect("/admin/index.jsp");
+                resp.sendRedirect("/admin/showRecipe.jsp");
             } else {
                 chain.doFilter(req, resp);
             }
@@ -50,7 +55,7 @@ public class LoginFilter implements Filter {
     }
 
     private void buildExcludedPathsList(List<String> excludedPaths) {
-        excludedPaths.add("/admin/login.jsp");
+        excludedPaths.add("/admin/index.jsp");
         excludedPaths.add("/admin/login");
     }
 

@@ -2,7 +2,7 @@
     <h1 class="hidden-sm hidden-xs">Al Salamo Alykom from the jsp</h1>
     <ul>
         <li class="link active">
-            <a href="/admin/index.jsp">
+            <a href="/admin/showRecipe.jsp">
                 <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Dashboard</span>
             </a>
@@ -17,7 +17,7 @@
         </li>
         <li class="link">
             <a>
-                <form action="/admin/getIngredients/add" method="post">
+                <form action="/admin/ingredient/retrieve/all" method="post">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     <input type="submit" name="addRecipe" value="Add Recipe"/>
                     <%--<span>Add recipe</span>--%>

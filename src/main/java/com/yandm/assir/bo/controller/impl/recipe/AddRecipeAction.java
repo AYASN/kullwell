@@ -1,61 +1,51 @@
-package com.yandm.assir.bo.controller.impl;
+package com.yandm.assir.bo.controller.impl.recipe;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Set;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import com.google.common.base.Strings;
 import com.yandm.assir.bo.controller.Action;
-import com.yandm.assir.model.Ingredient;
-import com.yandm.assir.model.Recipe;
 import com.yandm.assir.bo.service.IngredientService;
 import com.yandm.assir.bo.service.RecipeService;
 import com.yandm.assir.bo.service.impl.IngredientServiceImpl;
 import com.yandm.assir.bo.service.impl.RecipeServiceImpl;
+import com.yandm.assir.model.Ingredient;
+import com.yandm.assir.model.Recipe;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-public class EditAction implements Action{
+public class AddRecipeAction implements Action {
 
     RecipeService recipeService = new RecipeServiceImpl();
     IngredientService ingredientService = new IngredientServiceImpl();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        Recipe recipe;
         List<Ingredient> ingredients;
 
-        String id = req.getParameter("id");
         String name = req.getParameter("name");
         String description = req.getParameter("description");
         String cuisineType = req.getParameter("cuisine_type");
         String[] ingredientsIds = req.getParameterValues("slcIngredients");
 
-        if (Strings.isNullOrEmpty(id) || Strings.isNullOrEmpty(name) || Strings.isNullOrEmpty(description)
+        if (Strings.isNullOrEmpty(name) || Strings.isNullOrEmpty(description)
                 || Strings.isNullOrEmpty(cuisineType) || ingredientsIds == null) {
 
-            req.setAttribute("editError", "Please fill in all fields of recipe to edit.");
-            req.getRequestDispatcher("/admin/getIngredients/edit").forward(req, resp);
-        } else {
+            req.setAttribute("addError", "Please fill in all recipe fields.");
+            req.getRequestDispatcher("/admin/ingredient/retrieve/all").forward(req, resp);
+        }else {
             String strIngredientsIds = convertFromTableToString(ingredientsIds);
             ingredients = ingredientService.getIngredientsById(strIngredientsIds);
 
-            Recipe recipe = newRecipe(Long.valueOf(id), name, description, cuisineType, ingredients);
-            recipeService.editRecipe(recipe);
-        }
-    }
+            recipe = newRecipe(name, description, cuisineType, ingredients);
+            recipeService.createRecipe(recipe);
 
-    private Recipe newRecipe(Long id, String name, String description, String cuisineType,
-                             List<Ingredient> ingredients) {
-        Recipe recipe = new Recipe();
-        recipe.setId(id);
-        recipe.setName(name);
-        recipe.setDescription(description);
-        recipe.setCuisine_type(cuisineType);
-        recipe.setIngredients(ingredients);
-        return recipe;
+            Set<Recipe> recipes = recipeService.getRecipes();
+            req.setAttribute("recipes", recipes);
+            req.getRequestDispatcher("/admin/readRecipe.jsp").forward(req, resp);
+        }
     }
 
     private String convertFromTableToString(String[] ingredientsIds) {
@@ -64,5 +54,15 @@ public class EditAction implements Action{
             strIngredientsIds = strIngredientsIds + "," + ingredientsIds[i];
         }
         return strIngredientsIds;
+    }
+
+    private Recipe newRecipe(String name, String description, String cuisineType,
+                             List<Ingredient> ingredients) {
+        Recipe recipe = new Recipe();
+        recipe.setName(name);
+        recipe.setDescription(description);
+        recipe.setCuisine_type(cuisineType);
+        recipe.setIngredients(ingredients);
+        return recipe;
     }
 }

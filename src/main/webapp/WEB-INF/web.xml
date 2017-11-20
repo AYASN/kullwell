@@ -19,7 +19,7 @@
    </servlet>
    <servlet-mapping>
       <servlet-name>Ingredient Controller</servlet-name>
-      <url-pattern>/admin/getIngredients/*</url-pattern>
+      <url-pattern>/admin/ingredient/*</url-pattern>
    </servlet-mapping>
 
    <servlet>

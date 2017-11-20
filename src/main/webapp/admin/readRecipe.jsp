@@ -11,6 +11,11 @@
 </head>
 
 <body>
+ <%--   <ol>
+        <li><a href="/admin/ingredient/retrieve/add">Add</a></li>
+        <li><a href="/admin/ingredient/retrieve/edit">Edit</a></li>
+        <li><a href="/admin/recipe/remove">Remove</a></li>
+    </ol>--%>
 <div class="container-fluid display-table">
     <div class="row display-table-row">
 
