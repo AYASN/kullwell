@@ -24,9 +24,7 @@ public class RemoveRecipeAction implements Action{
             req.setAttribute("removeSuccess", "Recipe is removed.");
             recipeService.removeRecipe(id);
 
-            Set<Recipe> recipes = recipeService.getRecipes();
-            req.setAttribute("recipes", recipes);
-            req.getRequestDispatcher("/admin/readRecipe.jsp").forward(req, resp);
+            resp.sendRedirect("/admin/recipe/read");
         }
     }
 }

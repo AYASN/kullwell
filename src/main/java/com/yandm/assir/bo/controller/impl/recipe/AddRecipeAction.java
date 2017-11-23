@@ -42,9 +42,7 @@ public class AddRecipeAction implements Action {
             recipe = newRecipe(name, description, cuisineType, ingredients);
             recipeService.createRecipe(recipe);
 
-            Set<Recipe> recipes = recipeService.getRecipes();
-            req.setAttribute("recipes", recipes);
-            req.getRequestDispatcher("/admin/readRecipe.jsp").forward(req, resp);
+            resp.sendRedirect("/admin/recipe/read");
         }
     }
 

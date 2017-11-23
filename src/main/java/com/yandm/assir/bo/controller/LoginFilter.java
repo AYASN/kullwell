@@ -38,7 +38,7 @@ public class LoginFilter implements Filter {
         }else {
             if (excludedFromFilter(path)) {
                 session.setAttribute("alreadyLoggedIn", "You're already logged in!");
-                resp.sendRedirect("/admin/showRecipe.jsp");
+                resp.sendRedirect("/admin/recipe/show");
             } else {
                 chain.doFilter(req, resp);
             }

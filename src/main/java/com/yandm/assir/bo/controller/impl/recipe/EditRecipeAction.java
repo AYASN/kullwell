@@ -42,9 +42,7 @@ public class EditRecipeAction implements Action{
             Recipe recipe = newRecipe(Long.valueOf(id), name, description, cuisineType, ingredients);
             recipeService.editRecipe(recipe);
 
-            Set<Recipe> recipes = recipeService.getRecipes();
-            req.setAttribute("recipes", recipes);
-            req.getRequestDispatcher("/admin/readRecipe.jsp").forward(req, resp);
+            resp.sendRedirect("/admin/recipe/read");
         }
     }
 
@@ -59,7 +57,7 @@ public class EditRecipeAction implements Action{
         return recipe;
     }
 
-    private String convertFromTableToString(String[] ingredientsIds) {
+     private String convertFromTableToString(String[] ingredientsIds) {
         String strIngredientsIds = ingredientsIds[0];
         for (int i=1; i<ingredientsIds.length; i++) {
             strIngredientsIds = strIngredientsIds + "," + ingredientsIds[i];

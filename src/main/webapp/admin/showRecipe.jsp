@@ -1,6 +1,5 @@
 <%@ page import="com.yandm.assir.model.Recipe" %>
 <%@ page import="java.util.Set" %>
-<%@ page import="com.yandm.assir.bo.dao.impl.RecipeDaoImpl" %>
 <%@ page import="com.yandm.assir.bo.service.RecipeService" %>
 <%@ page import="com.yandm.assir.bo.service.impl.RecipeServiceImpl" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -15,12 +14,6 @@
 </head>
 
 <body>
-
-<%
-   RecipeService recipeService = new RecipeServiceImpl();
-   Set<Recipe> recipes = recipeService.getRecipes();
-   request.setAttribute("recipes", recipes);
-%>
 
 <div class="container-fluid display-table">
    <div class="row display-table-row">

@@ -11,11 +11,6 @@
 </head>
 
 <body>
- <%--   <ol>
-        <li><a href="/admin/ingredient/retrieve/add">Add</a></li>
-        <li><a href="/admin/ingredient/retrieve/edit">Edit</a></li>
-        <li><a href="/admin/recipe/remove">Remove</a></li>
-    </ol>--%>
 <div class="container-fluid display-table">
     <div class="row display-table-row">
 
@@ -71,7 +66,7 @@
                                             </c:forEach>
                                         </td>
                                         <div>
-                                            <td class="pull-right">
+                                            <td>
                                                 <form class="btn btn-xs btn-default" action="/admin/ingredient/retrieve/forRecipe" method="post">
                                                     <input hidden name="id" value="${recipe.id}"/>
                                                     <input hidden name="name" value="${recipe.name}"/>
@@ -81,7 +76,7 @@
                                                     <input type="submit" name="editRecipe" value="Edit"/>
                                                 </form>
                                             </td>
-                                            <td class="pull-right">
+                                            <td>
                                                 <form class="btn btn-xs btn-default" action="/admin/recipe/remove" method="post">
                                                     <input hidden name="id" value="${recipe.id}"/>
                                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>

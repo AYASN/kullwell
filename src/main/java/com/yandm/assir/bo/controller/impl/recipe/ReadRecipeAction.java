@@ -16,7 +16,6 @@ public class ReadRecipeAction implements Action{
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        resp.getWriter().write("I'm in the read action");
         Set<Recipe> recipes = recipeService.getRecipes();
         req.setAttribute("recipes", recipes);
         req.getRequestDispatcher("/admin/readRecipe.jsp").forward(req, resp);

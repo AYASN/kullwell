@@ -16,15 +16,10 @@ import com.yandm.assir.model.User;
 public class LoginController extends HttpServlet {
 
    private UserService userService = new UserServiceImpl();
-   private RecipeService recipeService = new RecipeServiceImpl();
 
 
 
    @Override
-   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-   }
-
    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       String username = req.getParameter("username");
       String password = req.getParameter("password");
@@ -40,14 +35,15 @@ public class LoginController extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
 
-//            Set<Recipe> recipes = recipeService.getRecipes();
-//            req.setAttribute("recipes", recipes);
-////            req.getRequestDispatcher("/admin/recipe/show").forward(req, resp);
             resp.sendRedirect("/admin/recipe/show");
          } else {
             req.setAttribute("userNotFoundError", "Incorrect username or password");
             req.getRequestDispatcher("/admin/index.jsp").forward(req, resp);
          }
       }
+   }
+
+   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      resp.sendRedirect("/admin/index.jsp");
    }
 }
