@@ -19,10 +19,11 @@ public class IngredientDaoImpl implements IngredientDao {
 
    @Override
    public void addIngredient(Ingredient ingredient) {
-      String query = "INSERT INTO ingredients (name,calories,season) VALUES " +
-            "(\"" + ingredient.getName() + "\"," +
-            ingredient.getCalories() + "," +
-            " \"" + ingredient.getSeason() + "\");";
+      String query = "INSERT INTO ingredients (name, calories, season)\n" +
+            "VALUES ('" + ingredient.getName() + "',\n" +
+            "        " +
+            ingredient.getCalories() + ",\n" +
+            "        '" + ingredient.getSeason() + "');";
       executeUpdate(query);
    }
 
