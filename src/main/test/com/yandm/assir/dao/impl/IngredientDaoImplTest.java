@@ -1,11 +1,12 @@
 package com.yandm.assir.dao.impl;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.Set;
-import org.junit.Test;
 import com.yandm.assir.dao.IngredientDao;
 import com.yandm.assir.model.Ingredient;
+import org.junit.Test;
+
+import java.util.Set;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class IngredientDaoImplTest {
 

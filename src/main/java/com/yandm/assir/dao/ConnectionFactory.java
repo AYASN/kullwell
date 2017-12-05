@@ -13,16 +13,26 @@ public class ConnectionFactory {
    private static final String JDBC_URL = "jdbc.url";
    private InputStream propFile = this.getClass().getClassLoader().getResourceAsStream("db.properties");
    private Properties properties = new Properties();
-   private static ConnectionFactory instance = new ConnectionFactory();
+   private static ConnectionFactory instance = null;
 
    private ConnectionFactory() {
-      try {
-         properties.load(propFile);
-         Class.forName(properties.getProperty(JDBC_DRIVER));
-      } catch (ClassNotFoundException | IOException e) {
-         e.printStackTrace();
+      if (instance == null) {
+         try {
+            properties.load(propFile);
+            Class.forName(properties.getProperty(JDBC_DRIVER));
+         } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+         }
       }
    }
+
+   public static ConnectionFactory getInstance() {
+      if (instance == null) {
+         instance = new ConnectionFactory();
+      }
+      return instance;
+   }
+
 
    private Connection createConnection() {
       loadProperties();
@@ -47,7 +57,6 @@ public class ConnectionFactory {
    }
 
    public static Connection getConnection() {
-      return instance.createConnection();
+      return getInstance().createConnection();
    }
 }
-

@@ -16,6 +16,7 @@ import com.yandm.assir.model.Ingredient;
 public class IngredientDaoImpl implements IngredientDao {
    private Statement statement;
    private Connection connection;
+   ConnectionFactory instance = null;
 
    @Override
    public void addIngredient(Ingredient ingredient) {
@@ -49,7 +50,8 @@ public class IngredientDaoImpl implements IngredientDao {
       String query = "SELECT *\n" +
             "FROM ingredients\n" +
             "WHERE id IN (" + strIngredientsIds + ");";
-      connection = ConnectionFactory.getConnection();
+      instance = ConnectionFactory.getInstance();
+      connection = instance.getConnection();
       List<Ingredient> ingredients = new ArrayList<>();
 
       try {
@@ -113,7 +115,7 @@ public class IngredientDaoImpl implements IngredientDao {
          e.printStackTrace();
       } finally {
          DbUtil.close(statement);
-         DbUtil.close(connection);
+//         DbUtil.close(connection);
       }
    }
 }
